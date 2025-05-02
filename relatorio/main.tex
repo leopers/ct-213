@@ -88,13 +88,120 @@
 
 \section{Breve Explicação em Alto Nível da Implementação}
 
+\begin{enumerate}
+    \item \textbf{Inicialização:}
+    \begin{itemize}
+        \item Recebe dimensões de entrada, da hidden layer e da saída.
+        \item Pesos são inicializados com distribuição gaussiana (\texttt{0.001 * randn}).
+        \item biases começam em zero.
+    \end{itemize}
+
+    \item \textbf{Propagação Direta (\texttt{forward\_propagation}):}
+    \begin{itemize}
+        \item Ativações da camada 0 são as próprias entradas.
+        \item Para cada camada $l=1,2$: $z^{(l)} = W^{(l)} a^{(l-1)} + b^{(l)}$,
+        $a^{(l)} = \sigma(z^{(l)})$.
+    \end{itemize}
+
+    \item \textbf{Função de Custo (\texttt{compute\_cost}):}
+    \begin{itemize}
+        \item Mean binary cross entropy sobre todas as amostras:
+        \[ J = -\frac{1}{m} \sum_i \bigl[y_i \ln \hat y_i + (1-y_i)\ln(1-\hat y_i)\bigr]. \]
+    \end{itemize}
+
+    \item \textbf{Cálculo dos Gradientes (\texttt{compute\_gradient\_back\_propagation}):}
+    \begin{itemize}
+        \item Erro de saída: $\delta^{(2)} = \hat y - y$.
+        \item $\delta^{(1)} = W^{(2)\!T}\,\delta^{(2)} \;\ast\; \sigma'(z^{(1)})$.
+        \item Gradiente dos pesos: $\nabla_{W^{(l)}} = \frac{1}{m} \bigl(\delta^{(l)}\,a^{(l-1)T}\bigr)$.
+        \item Gradiente dos bias: média de $\delta^{(l)}$ ao longo das amostras.
+    \end{itemize}
+
+    \item \textbf{\texttt{back\_propagation}:}
+    \begin{itemize}
+        \item Para cada camada $l$:
+        $W^{(l)} \gets W^{(l)} - \alpha\,\nabla_{W^{(l)}}$ e
+        $b^{(l)} \gets b^{(l)} - \alpha\,\nabla_{b^{(l)}}$.
+    \end{itemize}
+\end{enumerate}
+
+\newpage
+
 \section{Figuras Comprovando Funcionamento do Código}
 
 \subsection{Função de Classificação \textnormal{sum\_gt\_zeros}}
 
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.45\textwidth]{dataset_sum_gt_zero.eps}
+    \hfill
+    \includegraphics[width=0.45\textwidth]{neural_net_classification_sum_gt_zero.eps}
+    \caption{Tarefa de classificação.}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.45\textwidth]{cost_function_convergence_sum_gt_zero.eps}
+    \caption{Convergência da função de custo.}
+\end{figure}
+
+\newpage
+
 \subsection{Função de Classificação XOR}
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.45\textwidth]{dataset_xor.eps}
+    \hfill
+    \includegraphics[width=0.45\textwidth]{neural_net_classification_xor.eps}
+    \caption{Tarefa de classificação.}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.45\textwidth]{cost_function_convergence_xor.eps}
+    \caption{Convergência da função de custo.}
+\end{figure}
+
+\newpage
 
 \subsection{Segmentação de Cores}
 
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.45\textwidth]{original_image.eps}
+    \hfill
+    \includegraphics[width=0.45\textwidth]{segmented_image.eps}
+    \caption{Tarefa de segmentação.}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.45\textwidth]{cost_function_convergence_segmentation.eps}
+    \caption{Convergência da função de custo.}
+\end{figure}
+
+\newpage
 \section{Discussões}
+
+\subsection{Classificação “Soma > 0”}
+O dataset é linearmente separável e, portanto, observa-se que:
+\begin{itemize}
+  \item A função de custo converge rapidamente a valores próximos de zero, refletindo a separabilidade.  
+  \item O gráfico de \textit{cost function} apresenta curva suave e decrescente sem oscilações, indicando estabilidade do gradiente.  
+  \item A fronteira de decisão resultante classifica corretamente todos os pontos de teste, evidenciando que a arquitetura é suficiente para esse problema.
+\end{itemize}
+
+\subsection{Classificação XOR}
+O problema XOR é não linearmente separável e, portanto, nota-se que:
+\begin{itemize}
+  \item A convergência do custo é mais lenta e atinge um mínimo acima de zero.
+  \item Apesar disso, a rede consegue aprender bem o XOR errando minimamente a classificação.
+\end{itemize}
+
+\subsection{Segmentação de Imagem}
+A tarefa de segmentação utiliza a mesma rede para classificar cada pixel entre branco e verde.
+\begin{itemize}
+  \item A convergência do custo é mais ruidosa. 
+  \item A segmentação da imagem, classifica como verde cores que são próximas. 
+\end{itemize}
 \end{document}
