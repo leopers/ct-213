@@ -1,0 +1,100 @@
+\documentclass[a4paper,12pt]{article}
+
+% Configuração de idioma e codificação
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+
+% Layout da página
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{setspace}
+\setstretch{1.5} % Espaçamento entre linhas
+
+% Fontes e formatação
+\usepackage{kpfonts}
+\usepackage{amsmath, bm} % Pacotes matemáticos
+\usepackage{graphicx} % Inclusão de imagens
+\usepackage{caption} % Estilização de legendas
+\usepackage{fancyhdr} % Personalização de cabeçalhos e rodapés
+\usepackage{titlesec} % Personalização de títulos de seção
+\usepackage{xcolor} % Cores para textos e seções
+\usepackage{hyperref} % Links clicáveis
+\usepackage{background} % Fundo para a página de título
+\usepackage{placeins} % Controle de posicionamento de floats (FloatBarrier)
+% Ensure the package is loaded correctly for \floatbarrier
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=red,
+    urlcolor=red,
+    citecolor=red
+}
+
+% Personalização dos títulos
+\titleformat{\section}{\Large\bfseries\color{black}}{\thesection}{1em}{}
+\titleformat{\subsection}{\large\bfseries\color{black}}{\thesubsection}{1em}{}
+
+% Cabeçalhos e Rodapés
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\includegraphics[width=2cm]{ITA.png}} % Logo no topo direito
+\fancyhead[L]{\textbf{Instituto Tecnológico de Aeronáutica (ITA)}}
+\fancyfoot[L]{Leonardo Peres Dias}
+\fancyfoot[R]{\thepage}
+
+% Informações do título
+\title{
+    \textbf{Inteligência Artificial para Robótica Móvel CT-213}\\
+    \Large Instituto Tecnológico de Aeronáutica 
+
+    \textbf{Relatório do Laboratório 5 - Estratégias Evolutivas}\\
+}
+\author{
+    Leonardo Peres Dias 
+}
+\date{\today}
+
+% Configuração do fundo (marca d'água apenas na primeira página)
+\backgroundsetup{
+    scale=1.5,
+    color=black,
+    opacity=0.2,
+    angle=0,
+    position=current page.south,
+    vshift=5cm,
+    hshift=0cm,
+    contents={\includegraphics[width=8cm]{ITA.png}}
+}
+
+% Início do Documento
+\begin{document}
+
+% Aplicar o fundo apenas na primeira página
+\BgThispage
+\maketitle
+\thispagestyle{empty} % Sem cabeçalho/rodapé na página de título
+
+%\begin{abstract}
+%Este documento apresenta o relatório do Projeto CES-30 - 2024, desenvolvido com base na segunda forma descrita no enunciado do exame. O projeto abrange tarefas de \textbf{mineração de dados} e \textbf{construção de grafos de conhecimento}, com a aplicação de técnicas específicas para análise e solução prática de problemas reais.
+%\end{abstract}
+
+\newpage
+\NoBgThispage % Desativa a marca d'água para as páginas seguintes
+
+\tableofcontents
+
+\newpage
+\NoBgThispage % Desativa a marca d'água para as páginas seguintes
+
+\section{Breve Explicação em Alto Nível da Implementação}
+
+\section{Figuras Comprovando Funcionamento do Código}
+
+\subsection{Função de Classificação \textnormal{sum\_gt\_zeros}}
+
+\subsection{Função de Classificação XOR}
+
+\subsection{Segmentação de Cores}
+
+\section{Discussões}
+\end{document}
