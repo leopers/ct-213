@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.18.0 (TeX Live 2024)  (format=lualatex 2024.12.7)  2 MAY 2025 04:50
+This is LuaHBTeX, Version 1.18.0 (TeX Live 2024)  (format=lualatex 2024.12.7)  12 MAY 2025 08:32
  restricted system commands enabled.
  file:line:error style messages enabled.
 **/Users/leonardodias/ct-213/relatorio/main
@@ -1102,7 +1102,17 @@ Package: afterpage 2023/07/04 v1.08 After-Page Package (DPC)
 Package: placeins 2005/04/18  v 2.2
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 31.
- (./main.aux)
+ (./main.aux
+
+LaTeX Warning: Label `fig:three_figures' multiply defined.
+
+
+LaTeX Warning: Label `fig:three_figures' multiply defined.
+
+
+LaTeX Warning: Label `fig:three_figures' multiply defined.
+
+)
 \openout1 = main.aux
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 70.
@@ -1134,15 +1144,15 @@ LaTeX Font Info:    ... okay on input line 70.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(72.26999pt, 452.9679pt, 72.26999pt)
-* v-part:(T,H,B)=(72.26999pt, 700.50687pt, 72.26999pt)
+* h-part:(L,W,R)=(57.81621pt, 481.87546pt, 57.81621pt)
+* v-part:(T,H,B)=(57.81621pt, 729.41443pt, 57.81621pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
-* \textwidth=452.9679pt
-* \textheight=700.50687pt
-* \oddsidemargin=0.0pt
-* \evensidemargin=0.0pt
-* \topmargin=-37.0pt
+* \textwidth=481.87546pt
+* \textheight=729.41443pt
+* \oddsidemargin=-14.45378pt
+* \evensidemargin=-14.45378pt
+* \topmargin=-51.45378pt
 * \headheight=12.0pt
 * \headsep=25.0pt
 * \topskip=12.0pt
@@ -1202,7 +1212,7 @@ Package hyperref Info: Link coloring ON on input line 70.
 \@outlinefile=\write4
 
 \openout4 = main.out
-<ITA.png, id=43, 458.23369pt x 174.78342pt>
+<ITA.png, id=55, 458.23369pt x 174.78342pt>
 File: ITA.png Graphic file (type png)
 <use ITA.png>
 Package luatex.def Info: ITA.png  used on input line 81.
@@ -1232,7 +1242,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [2]
 File: ITA.png Graphic file (type png)
 <use ITA.png>
-Package luatex.def Info: ITA.png  used on input line 128.
+Package luatex.def Info: ITA.png  used on input line 97.
 (luatex.def)             Requested size: 56.9055pt x 21.70384pt.
 
 
@@ -1243,51 +1253,93 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-14.05388pt}.
 
 [3]
-Package epstopdf Info: Source file: <dataset_sum_gt_zero.eps>
-(epstopdf)                    date: 2025-05-02 04:18:47
-(epstopdf)                    size: 13433 bytes
-(epstopdf)             Output file: <dataset_sum_gt_zero-eps-converted-to.pdf>
-(epstopdf)                    date: 2025-05-02 04:22:38
-(epstopdf)                    size: 12397 bytes
-(epstopdf)             Command: <repstopdf --outfile=dataset_sum_gt_zero-eps-converted-to.pdf dataset_sum_gt_zero.eps>
-(epstopdf)             \includegraphics on input line 136.
+Package epstopdf Info: Source file: <figures/convergence_sgz_l0.0.eps>
+(epstopdf)                    date: 2025-05-12 08:03:29
+(epstopdf)                    size: 47289 bytes
+(epstopdf)             Output file: <figures/convergence_sgz_l0.0-eps-converted-to.pdf>
+(epstopdf)                    date: 2025-05-12 08:06:50
+(epstopdf)                    size: 19282 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/convergence_sgz_l0.0-eps-converted-to.pdf figures/convergence_sgz_l0.0.eps>
+(epstopdf)             \includegraphics on input line 111.
 Package epstopdf Info: Output file is already uptodate.
-<dataset_sum_gt_zero-eps-converted-to.pdf, id=80, 462.72874pt x 347.2975pt>
-File: dataset_sum_gt_zero-eps-converted-to.pdf Graphic file (type pdf)
-<use dataset_sum_gt_zero-eps-converted-to.pdf>
-Package luatex.def Info: dataset_sum_gt_zero-eps-converted-to.pdf  used on input line 136.
-(luatex.def)             Requested size: 203.83417pt x 152.98624pt.
-Package epstopdf Info: Source file: <neural_net_classification_sum_gt_zero.eps>
-(epstopdf)                    date: 2025-05-02 04:18:47
-(epstopdf)                    size: 136339 bytes
-(epstopdf)             Output file: <neural_net_classification_sum_gt_zero-eps-converted-to.pdf>
-(epstopdf)                    date: 2025-05-02 04:22:53
-(epstopdf)                    size: 36701 bytes
-(epstopdf)             Command: <repstopdf --outfile=neural_net_classification_sum_gt_zero-eps-converted-to.pdf neural_net_classification_sum_gt_zero.eps>
-(epstopdf)             \includegraphics on input line 138.
+<figures/convergence_sgz_l0.0-eps-converted-to.pdf, id=88, 462.72874pt x 347.2975pt>
+File: figures/convergence_sgz_l0.0-eps-converted-to.pdf Graphic file (type pdf)
+<use figures/convergence_sgz_l0.0-eps-converted-to.pdf>
+Package luatex.def Info: figures/convergence_sgz_l0.0-eps-converted-to.pdf  used on input line 111.
+(luatex.def)             Requested size: 216.84248pt x 162.7476pt.
+Package epstopdf Info: Source file: <figures/dataset_sgz_l0.0.eps>
+(epstopdf)                    date: 2025-05-12 08:03:29
+(epstopdf)                    size: 17510 bytes
+(epstopdf)             Output file: <figures/dataset_sgz_l0.0-eps-converted-to.pdf>
+(epstopdf)                    date: 2025-05-12 08:06:50
+(epstopdf)                    size: 12704 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/dataset_sgz_l0.0-eps-converted-to.pdf figures/dataset_sgz_l0.0.eps>
+(epstopdf)             \includegraphics on input line 117.
 Package epstopdf Info: Output file is already uptodate.
-<neural_net_classification_sum_gt_zero-eps-converted-to.pdf, id=81, 462.72874pt x 347.2975pt>
-File: neural_net_classification_sum_gt_zero-eps-converted-to.pdf Graphic file (type pdf)
-<use neural_net_classification_sum_gt_zero-eps-converted-to.pdf>
-Package luatex.def Info: neural_net_classification_sum_gt_zero-eps-converted-to.pdf  used on input line 138.
-(luatex.def)             Requested size: 203.83417pt x 152.98624pt.
-Package epstopdf Info: Source file: <cost_function_convergence_sum_gt_zero.eps>
-(epstopdf)                    date: 2025-05-02 04:18:47
-(epstopdf)                    size: 20724 bytes
-(epstopdf)             Output file: <cost_function_convergence_sum_gt_zero-eps-converted-to.pdf>
-(epstopdf)                    date: 2025-05-02 04:24:22
-(epstopdf)                    size: 11904 bytes
-(epstopdf)             Command: <repstopdf --outfile=cost_function_convergence_sum_gt_zero-eps-converted-to.pdf cost_function_convergence_sum_gt_zero.eps>
-(epstopdf)             \includegraphics on input line 144.
+<figures/dataset_sgz_l0.0-eps-converted-to.pdf, id=89, 462.72874pt x 347.2975pt>
+File: figures/dataset_sgz_l0.0-eps-converted-to.pdf Graphic file (type pdf)
+<use figures/dataset_sgz_l0.0-eps-converted-to.pdf>
+Package luatex.def Info: figures/dataset_sgz_l0.0-eps-converted-to.pdf  used on input line 117.
+(luatex.def)             Requested size: 216.84248pt x 162.7476pt.
+Package epstopdf Info: Source file: <figures/nn_classification_sgz_l0.0.eps>
+(epstopdf)                    date: 2025-05-12 08:03:29
+(epstopdf)                    size: 239178 bytes
+(epstopdf)             Output file: <figures/nn_classification_sgz_l0.0-eps-converted-to.pdf>
+(epstopdf)                    date: 2025-05-12 08:06:50
+(epstopdf)                    size: 66598 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/nn_classification_sgz_l0.0-eps-converted-to.pdf figures/nn_classification_sgz_l0.0.eps>
+(epstopdf)             \includegraphics on input line 124.
 Package epstopdf Info: Output file is already uptodate.
-<cost_function_convergence_sum_gt_zero-eps-converted-to.pdf, id=82, 462.72874pt x 347.2975pt>
-File: cost_function_convergence_sum_gt_zero-eps-converted-to.pdf Graphic file (type pdf)
-<use cost_function_convergence_sum_gt_zero-eps-converted-to.pdf>
-Package luatex.def Info: cost_function_convergence_sum_gt_zero-eps-converted-to.pdf  used on input line 144.
-(luatex.def)             Requested size: 203.83417pt x 152.98624pt.
+<figures/nn_classification_sgz_l0.0-eps-converted-to.pdf, id=90, 462.72874pt x 347.2975pt>
+File: figures/nn_classification_sgz_l0.0-eps-converted-to.pdf Graphic file (type pdf)
+<use figures/nn_classification_sgz_l0.0-eps-converted-to.pdf>
+Package luatex.def Info: figures/nn_classification_sgz_l0.0-eps-converted-to.pdf  used on input line 124.
+(luatex.def)             Requested size: 433.68497pt x 325.5005pt.
+Package epstopdf Info: Source file: <figures/convergence_sgz_l0.002.eps>
+(epstopdf)                    date: 2025-05-12 08:03:29
+(epstopdf)                    size: 44834 bytes
+(epstopdf)             Output file: <figures/convergence_sgz_l0.002-eps-converted-to.pdf>
+(epstopdf)                    date: 2025-05-12 08:08:57
+(epstopdf)                    size: 18630 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/convergence_sgz_l0.002-eps-converted-to.pdf figures/convergence_sgz_l0.002.eps>
+(epstopdf)             \includegraphics on input line 137.
+Package epstopdf Info: Output file is already uptodate.
+<figures/convergence_sgz_l0.002-eps-converted-to.pdf, id=91, 462.72874pt x 347.2975pt>
+File: figures/convergence_sgz_l0.002-eps-converted-to.pdf Graphic file (type pdf)
+<use figures/convergence_sgz_l0.002-eps-converted-to.pdf>
+Package luatex.def Info: figures/convergence_sgz_l0.002-eps-converted-to.pdf  used on input line 137.
+(luatex.def)             Requested size: 216.84248pt x 162.7476pt.
+Package epstopdf Info: Source file: <figures/dataset_sgz_l0.002.eps>
+(epstopdf)                    date: 2025-05-12 08:03:29
+(epstopdf)                    size: 17512 bytes
+(epstopdf)             Output file: <figures/dataset_sgz_l0.002-eps-converted-to.pdf>
+(epstopdf)                    date: 2025-05-12 08:08:57
+(epstopdf)                    size: 12707 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/dataset_sgz_l0.002-eps-converted-to.pdf figures/dataset_sgz_l0.002.eps>
+(epstopdf)             \includegraphics on input line 143.
+Package epstopdf Info: Output file is already uptodate.
+<figures/dataset_sgz_l0.002-eps-converted-to.pdf, id=92, 462.72874pt x 347.2975pt>
+File: figures/dataset_sgz_l0.002-eps-converted-to.pdf Graphic file (type pdf)
+<use figures/dataset_sgz_l0.002-eps-converted-to.pdf>
+Package luatex.def Info: figures/dataset_sgz_l0.002-eps-converted-to.pdf  used on input line 143.
+(luatex.def)             Requested size: 216.84248pt x 162.7476pt.
+Package epstopdf Info: Source file: <figures/nn_classification_sgz_l0.002.eps>
+(epstopdf)                    date: 2025-05-12 08:03:29
+(epstopdf)                    size: 243132 bytes
+(epstopdf)             Output file: <figures/nn_classification_sgz_l0.002-eps-converted-to.pdf>
+(epstopdf)                    date: 2025-05-12 08:08:58
+(epstopdf)                    size: 68491 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/nn_classification_sgz_l0.002-eps-converted-to.pdf figures/nn_classification_sgz_l0.002.eps>
+(epstopdf)             \includegraphics on input line 150.
+Package epstopdf Info: Output file is already uptodate.
+<figures/nn_classification_sgz_l0.002-eps-converted-to.pdf, id=93, 462.72874pt x 347.2975pt>
+File: figures/nn_classification_sgz_l0.002-eps-converted-to.pdf Graphic file (type pdf)
+<use figures/nn_classification_sgz_l0.002-eps-converted-to.pdf>
+Package luatex.def Info: figures/nn_classification_sgz_l0.002-eps-converted-to.pdf  used on input line 150.
+(luatex.def)             Requested size: 433.68497pt x 325.5005pt.
 File: ITA.png Graphic file (type png)
 <use ITA.png>
-Package luatex.def Info: ITA.png  used on input line 148.
+Package luatex.def Info: ITA.png  used on input line 154.
 (luatex.def)             Requested size: 56.9055pt x 21.70384pt.
 
 
@@ -1297,52 +1349,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-14.05388pt}.
 
-[4<./dataset_sum_gt_zero-eps-converted-to.pdf><./neural_net_classification_sum_gt_zero-eps-converted-to.pdf><./cost_function_convergence_sum_gt_zero-eps-converted-to.pdf>]
-Package epstopdf Info: Source file: <dataset_xor.eps>
-(epstopdf)                    date: 2025-05-02 04:20:49
-(epstopdf)                    size: 13425 bytes
-(epstopdf)             Output file: <dataset_xor-eps-converted-to.pdf>
-(epstopdf)                    date: 2025-05-02 04:25:51
-(epstopdf)                    size: 12429 bytes
-(epstopdf)             Command: <repstopdf --outfile=dataset_xor-eps-converted-to.pdf dataset_xor.eps>
-(epstopdf)             \includegraphics on input line 153.
-Package epstopdf Info: Output file is already uptodate.
-<dataset_xor-eps-converted-to.pdf, id=165, 462.72874pt x 347.2975pt>
-File: dataset_xor-eps-converted-to.pdf Graphic file (type pdf)
-<use dataset_xor-eps-converted-to.pdf>
-Package luatex.def Info: dataset_xor-eps-converted-to.pdf  used on input line 153.
-(luatex.def)             Requested size: 203.83417pt x 152.98624pt.
-Package epstopdf Info: Source file: <neural_net_classification_xor.eps>
-(epstopdf)                    date: 2025-05-02 04:20:49
-(epstopdf)                    size: 163755 bytes
-(epstopdf)             Output file: <neural_net_classification_xor-eps-converted-to.pdf>
-(epstopdf)                    date: 2025-05-02 04:25:51
-(epstopdf)                    size: 43082 bytes
-(epstopdf)             Command: <repstopdf --outfile=neural_net_classification_xor-eps-converted-to.pdf neural_net_classification_xor.eps>
-(epstopdf)             \includegraphics on input line 155.
-Package epstopdf Info: Output file is already uptodate.
-<neural_net_classification_xor-eps-converted-to.pdf, id=166, 462.72874pt x 347.2975pt>
-File: neural_net_classification_xor-eps-converted-to.pdf Graphic file (type pdf)
-<use neural_net_classification_xor-eps-converted-to.pdf>
-Package luatex.def Info: neural_net_classification_xor-eps-converted-to.pdf  used on input line 155.
-(luatex.def)             Requested size: 203.83417pt x 152.98624pt.
-Package epstopdf Info: Source file: <cost_function_convergence_xor.eps>
-(epstopdf)                    date: 2025-05-02 04:20:49
-(epstopdf)                    size: 37148 bytes
-(epstopdf)             Output file: <cost_function_convergence_xor-eps-converted-to.pdf>
-(epstopdf)                    date: 2025-05-02 04:25:51
-(epstopdf)                    size: 16226 bytes
-(epstopdf)             Command: <repstopdf --outfile=cost_function_convergence_xor-eps-converted-to.pdf cost_function_convergence_xor.eps>
-(epstopdf)             \includegraphics on input line 161.
-Package epstopdf Info: Output file is already uptodate.
-<cost_function_convergence_xor-eps-converted-to.pdf, id=167, 462.72874pt x 347.2975pt>
-File: cost_function_convergence_xor-eps-converted-to.pdf Graphic file (type pdf)
-<use cost_function_convergence_xor-eps-converted-to.pdf>
-Package luatex.def Info: cost_function_convergence_xor-eps-converted-to.pdf  used on input line 161.
-(luatex.def)             Requested size: 203.83417pt x 152.98624pt.
+[4<./figures/convergence_sgz_l0.0-eps-converted-to.pdf><./figures/dataset_sgz_l0.0-eps-converted-to.pdf><./figures/nn_classification_sgz_l0.0-eps-converted-to.pdf>]
 File: ITA.png Graphic file (type png)
 <use ITA.png>
-Package luatex.def Info: ITA.png  used on input line 165.
+Package luatex.def Info: ITA.png  used on input line 156.
 (luatex.def)             Requested size: 56.9055pt x 21.70384pt.
 
 
@@ -1352,52 +1362,52 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-14.05388pt}.
 
-[5<./dataset_xor-eps-converted-to.pdf><./neural_net_classification_xor-eps-converted-to.pdf><./cost_function_convergence_xor-eps-converted-to.pdf>]
-Package epstopdf Info: Source file: <original_image.eps>
-(epstopdf)                    date: 2025-05-02 04:18:47
-(epstopdf)                    size: 1117700 bytes
-(epstopdf)             Output file: <original_image-eps-converted-to.pdf>
-(epstopdf)                    date: 2025-05-02 04:27:34
-(epstopdf)                    size: 63298 bytes
-(epstopdf)             Command: <repstopdf --outfile=original_image-eps-converted-to.pdf original_image.eps>
-(epstopdf)             \includegraphics on input line 171.
+[5<./figures/convergence_sgz_l0.002-eps-converted-to.pdf><./figures/dataset_sgz_l0.002-eps-converted-to.pdf><./figures/nn_classification_sgz_l0.002-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <figures/convergence_xor_l0.0.eps>
+(epstopdf)                    date: 2025-05-12 08:03:29
+(epstopdf)                    size: 29501 bytes
+(epstopdf)             Output file: <figures/convergence_xor_l0.0-eps-converted-to.pdf>
+(epstopdf)                    date: 2025-05-12 08:10:34
+(epstopdf)                    size: 14490 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/convergence_xor_l0.0-eps-converted-to.pdf figures/convergence_xor_l0.0.eps>
+(epstopdf)             \includegraphics on input line 166.
 Package epstopdf Info: Output file is already uptodate.
-<original_image-eps-converted-to.pdf, id=250, 462.72874pt x 347.2975pt>
-File: original_image-eps-converted-to.pdf Graphic file (type pdf)
-<use original_image-eps-converted-to.pdf>
-Package luatex.def Info: original_image-eps-converted-to.pdf  used on input line 171.
-(luatex.def)             Requested size: 203.83417pt x 152.98624pt.
-Package epstopdf Info: Source file: <segmented_image.eps>
-(epstopdf)                    date: 2025-05-02 04:18:47
-(epstopdf)                    size: 1118216 bytes
-(epstopdf)             Output file: <segmented_image-eps-converted-to.pdf>
-(epstopdf)                    date: 2025-05-02 04:27:34
-(epstopdf)                    size: 69495 bytes
-(epstopdf)             Command: <repstopdf --outfile=segmented_image-eps-converted-to.pdf segmented_image.eps>
-(epstopdf)             \includegraphics on input line 173.
+<figures/convergence_xor_l0.0-eps-converted-to.pdf, id=268, 462.72874pt x 347.2975pt>
+File: figures/convergence_xor_l0.0-eps-converted-to.pdf Graphic file (type pdf)
+<use figures/convergence_xor_l0.0-eps-converted-to.pdf>
+Package luatex.def Info: figures/convergence_xor_l0.0-eps-converted-to.pdf  used on input line 166.
+(luatex.def)             Requested size: 216.84248pt x 162.7476pt.
+Package epstopdf Info: Source file: <figures/dataset_xor_l0.0.eps>
+(epstopdf)                    date: 2025-05-12 08:03:29
+(epstopdf)                    size: 17510 bytes
+(epstopdf)             Output file: <figures/dataset_xor_l0.0-eps-converted-to.pdf>
+(epstopdf)                    date: 2025-05-12 08:10:34
+(epstopdf)                    size: 12697 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/dataset_xor_l0.0-eps-converted-to.pdf figures/dataset_xor_l0.0.eps>
+(epstopdf)             \includegraphics on input line 172.
 Package epstopdf Info: Output file is already uptodate.
-<segmented_image-eps-converted-to.pdf, id=251, 462.72874pt x 347.2975pt>
-File: segmented_image-eps-converted-to.pdf Graphic file (type pdf)
-<use segmented_image-eps-converted-to.pdf>
-Package luatex.def Info: segmented_image-eps-converted-to.pdf  used on input line 173.
-(luatex.def)             Requested size: 203.83417pt x 152.98624pt.
-Package epstopdf Info: Source file: <cost_function_convergence_segmentation.eps>
-(epstopdf)                    date: 2025-05-02 04:18:47
-(epstopdf)                    size: 24792 bytes
-(epstopdf)             Output file: <cost_function_convergence_segmentation-eps-converted-to.pdf>
-(epstopdf)                    date: 2025-05-02 04:27:34
-(epstopdf)                    size: 12855 bytes
-(epstopdf)             Command: <repstopdf --outfile=cost_function_convergence_segmentation-eps-converted-to.pdf cost_function_convergence_segmentation.eps>
+<figures/dataset_xor_l0.0-eps-converted-to.pdf, id=269, 462.72874pt x 347.2975pt>
+File: figures/dataset_xor_l0.0-eps-converted-to.pdf Graphic file (type pdf)
+<use figures/dataset_xor_l0.0-eps-converted-to.pdf>
+Package luatex.def Info: figures/dataset_xor_l0.0-eps-converted-to.pdf  used on input line 172.
+(luatex.def)             Requested size: 216.84248pt x 162.7476pt.
+Package epstopdf Info: Source file: <figures/nn_classification_xor_l0.0.eps>
+(epstopdf)                    date: 2025-05-12 08:03:29
+(epstopdf)                    size: 336430 bytes
+(epstopdf)             Output file: <figures/nn_classification_xor_l0.0-eps-converted-to.pdf>
+(epstopdf)                    date: 2025-05-12 08:10:35
+(epstopdf)                    size: 87704 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/nn_classification_xor_l0.0-eps-converted-to.pdf figures/nn_classification_xor_l0.0.eps>
 (epstopdf)             \includegraphics on input line 179.
 Package epstopdf Info: Output file is already uptodate.
-<cost_function_convergence_segmentation-eps-converted-to.pdf, id=252, 462.72874pt x 347.2975pt>
-File: cost_function_convergence_segmentation-eps-converted-to.pdf Graphic file (type pdf)
-<use cost_function_convergence_segmentation-eps-converted-to.pdf>
-Package luatex.def Info: cost_function_convergence_segmentation-eps-converted-to.pdf  used on input line 179.
-(luatex.def)             Requested size: 203.83417pt x 152.98624pt.
+<figures/nn_classification_xor_l0.0-eps-converted-to.pdf, id=270, 462.72874pt x 347.2975pt>
+File: figures/nn_classification_xor_l0.0-eps-converted-to.pdf Graphic file (type pdf)
+<use figures/nn_classification_xor_l0.0-eps-converted-to.pdf>
+Package luatex.def Info: figures/nn_classification_xor_l0.0-eps-converted-to.pdf  used on input line 179.
+(luatex.def)             Requested size: 433.68497pt x 325.5005pt.
 File: ITA.png Graphic file (type png)
 <use ITA.png>
-Package luatex.def Info: ITA.png  used on input line 183.
+Package luatex.def Info: ITA.png  used on input line 185.
 (luatex.def)             Requested size: 56.9055pt x 21.70384pt.
 
 
@@ -1407,10 +1417,52 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-14.05388pt}.
 
-[6<./original_image-eps-converted-to.pdf><./segmented_image-eps-converted-to.pdf><./cost_function_convergence_segmentation-eps-converted-to.pdf>]
+[6<./figures/convergence_xor_l0.0-eps-converted-to.pdf><./figures/dataset_xor_l0.0-eps-converted-to.pdf><./figures/nn_classification_xor_l0.0-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <figures/convergence_xor_l0.002.eps>
+(epstopdf)                    date: 2025-05-12 08:03:29
+(epstopdf)                    size: 43884 bytes
+(epstopdf)             Output file: <figures/convergence_xor_l0.002-eps-converted-to.pdf>
+(epstopdf)                    date: 2025-05-12 08:10:35
+(epstopdf)                    size: 18517 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/convergence_xor_l0.002-eps-converted-to.pdf figures/convergence_xor_l0.002.eps>
+(epstopdf)             \includegraphics on input line 194.
+Package epstopdf Info: Output file is already uptodate.
+<figures/convergence_xor_l0.002-eps-converted-to.pdf, id=358, 462.72874pt x 347.2975pt>
+File: figures/convergence_xor_l0.002-eps-converted-to.pdf Graphic file (type pdf)
+<use figures/convergence_xor_l0.002-eps-converted-to.pdf>
+Package luatex.def Info: figures/convergence_xor_l0.002-eps-converted-to.pdf  used on input line 194.
+(luatex.def)             Requested size: 216.84248pt x 162.7476pt.
+Package epstopdf Info: Source file: <figures/dataset_xor_l0.002.eps>
+(epstopdf)                    date: 2025-05-12 08:03:29
+(epstopdf)                    size: 17512 bytes
+(epstopdf)             Output file: <figures/dataset_xor_l0.002-eps-converted-to.pdf>
+(epstopdf)                    date: 2025-05-12 08:10:35
+(epstopdf)                    size: 12700 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/dataset_xor_l0.002-eps-converted-to.pdf figures/dataset_xor_l0.002.eps>
+(epstopdf)             \includegraphics on input line 200.
+Package epstopdf Info: Output file is already uptodate.
+<figures/dataset_xor_l0.002-eps-converted-to.pdf, id=359, 462.72874pt x 347.2975pt>
+File: figures/dataset_xor_l0.002-eps-converted-to.pdf Graphic file (type pdf)
+<use figures/dataset_xor_l0.002-eps-converted-to.pdf>
+Package luatex.def Info: figures/dataset_xor_l0.002-eps-converted-to.pdf  used on input line 200.
+(luatex.def)             Requested size: 216.84248pt x 162.7476pt.
+Package epstopdf Info: Source file: <figures/nn_classification_xor_l0.002.eps>
+(epstopdf)                    date: 2025-05-12 08:03:29
+(epstopdf)                    size: 261922 bytes
+(epstopdf)             Output file: <figures/nn_classification_xor_l0.002-eps-converted-to.pdf>
+(epstopdf)                    date: 2025-05-12 08:10:35
+(epstopdf)                    size: 66443 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/nn_classification_xor_l0.002-eps-converted-to.pdf figures/nn_classification_xor_l0.002.eps>
+(epstopdf)             \includegraphics on input line 207.
+Package epstopdf Info: Output file is already uptodate.
+<figures/nn_classification_xor_l0.002-eps-converted-to.pdf, id=360, 462.72874pt x 347.2975pt>
+File: figures/nn_classification_xor_l0.002-eps-converted-to.pdf Graphic file (type pdf)
+<use figures/nn_classification_xor_l0.002-eps-converted-to.pdf>
+Package luatex.def Info: figures/nn_classification_xor_l0.002-eps-converted-to.pdf  used on input line 207.
+(luatex.def)             Requested size: 433.68497pt x 325.5005pt.
 File: ITA.png Graphic file (type png)
 <use ITA.png>
-Package luatex.def Info: ITA.png  used on input line 207.
+Package luatex.def Info: ITA.png  used on input line 213.
 (luatex.def)             Requested size: 56.9055pt x 21.70384pt.
 
 
@@ -1420,30 +1472,117 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-14.05388pt}.
 
-[7] (./main.aux)
+[7<./figures/convergence_xor_l0.002-eps-converted-to.pdf><./figures/dataset_xor_l0.002-eps-converted-to.pdf><./figures/nn_classification_xor_l0.002-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <figures/rightAnklePitch.eps>
+(epstopdf)                    date: 2025-05-12 08:03:29
+(epstopdf)                    size: 24917 bytes
+(epstopdf)             Output file: <figures/rightAnklePitch-eps-converted-to.pdf>
+(epstopdf)                    date: 2025-05-12 08:15:12
+(epstopdf)                    size: 14373 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/rightAnklePitch-eps-converted-to.pdf figures/rightAnklePitch.eps>
+(epstopdf)             \includegraphics on input line 222.
+Package epstopdf Info: Output file is already uptodate.
+<figures/rightAnklePitch-eps-converted-to.pdf, id=447, 462.72874pt x 347.2975pt>
+File: figures/rightAnklePitch-eps-converted-to.pdf Graphic file (type pdf)
+<use figures/rightAnklePitch-eps-converted-to.pdf>
+Package luatex.def Info: figures/rightAnklePitch-eps-converted-to.pdf  used on input line 222.
+(luatex.def)             Requested size: 216.84248pt x 162.7476pt.
+Package epstopdf Info: Source file: <figures/rightAnkleRoll.eps>
+(epstopdf)                    date: 2025-05-12 08:03:29
+(epstopdf)                    size: 25002 bytes
+(epstopdf)             Output file: <figures/rightAnkleRoll-eps-converted-to.pdf>
+(epstopdf)                    date: 2025-05-12 08:15:13
+(epstopdf)                    size: 14826 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/rightAnkleRoll-eps-converted-to.pdf figures/rightAnkleRoll.eps>
+(epstopdf)             \includegraphics on input line 228.
+Package epstopdf Info: Output file is already uptodate.
+<figures/rightAnkleRoll-eps-converted-to.pdf, id=448, 462.72874pt x 347.2975pt>
+File: figures/rightAnkleRoll-eps-converted-to.pdf Graphic file (type pdf)
+<use figures/rightAnkleRoll-eps-converted-to.pdf>
+Package luatex.def Info: figures/rightAnkleRoll-eps-converted-to.pdf  used on input line 228.
+(luatex.def)             Requested size: 216.84248pt x 162.7476pt.
+Package epstopdf Info: Source file: <figures/rightHipPitch.eps>
+(epstopdf)                    date: 2025-05-12 08:03:29
+(epstopdf)                    size: 25836 bytes
+(epstopdf)             Output file: <figures/rightHipPitch-eps-converted-to.pdf>
+(epstopdf)                    date: 2025-05-12 08:15:13
+(epstopdf)                    size: 14713 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/rightHipPitch-eps-converted-to.pdf figures/rightHipPitch.eps>
+(epstopdf)             \includegraphics on input line 237.
+Package epstopdf Info: Output file is already uptodate.
+<figures/rightHipPitch-eps-converted-to.pdf, id=449, 462.72874pt x 347.2975pt>
+File: figures/rightHipPitch-eps-converted-to.pdf Graphic file (type pdf)
+<use figures/rightHipPitch-eps-converted-to.pdf>
+Package luatex.def Info: figures/rightHipPitch-eps-converted-to.pdf  used on input line 237.
+(luatex.def)             Requested size: 144.5641pt x 108.4984pt.
+Package epstopdf Info: Source file: <figures/rightHipRoll.eps>
+(epstopdf)                    date: 2025-05-12 08:03:29
+(epstopdf)                    size: 25803 bytes
+(epstopdf)             Output file: <figures/rightHipRoll-eps-converted-to.pdf>
+(epstopdf)                    date: 2025-05-12 08:15:13
+(epstopdf)                    size: 14798 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/rightHipRoll-eps-converted-to.pdf figures/rightHipRoll.eps>
+(epstopdf)             \includegraphics on input line 243.
+Package epstopdf Info: Output file is already uptodate.
+<figures/rightHipRoll-eps-converted-to.pdf, id=450, 462.72874pt x 347.2975pt>
+File: figures/rightHipRoll-eps-converted-to.pdf Graphic file (type pdf)
+<use figures/rightHipRoll-eps-converted-to.pdf>
+Package luatex.def Info: figures/rightHipRoll-eps-converted-to.pdf  used on input line 243.
+(luatex.def)             Requested size: 144.5641pt x 108.4984pt.
+Package epstopdf Info: Source file: <figures/rightKneePitch.eps>
+(epstopdf)                    date: 2025-05-12 08:03:29
+(epstopdf)                    size: 26885 bytes
+(epstopdf)             Output file: <figures/rightKneePitch-eps-converted-to.pdf>
+(epstopdf)                    date: 2025-05-12 08:15:13
+(epstopdf)                    size: 15186 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/rightKneePitch-eps-converted-to.pdf figures/rightKneePitch.eps>
+(epstopdf)             \includegraphics on input line 249.
+Package epstopdf Info: Output file is already uptodate.
+<figures/rightKneePitch-eps-converted-to.pdf, id=451, 462.72874pt x 347.2975pt>
+File: figures/rightKneePitch-eps-converted-to.pdf Graphic file (type pdf)
+<use figures/rightKneePitch-eps-converted-to.pdf>
+Package luatex.def Info: figures/rightKneePitch-eps-converted-to.pdf  used on input line 249.
+(luatex.def)             Requested size: 144.5641pt x 108.4984pt.
+File: ITA.png Graphic file (type png)
+<use ITA.png>
+Package luatex.def Info: ITA.png  used on input line 267.
+(luatex.def)             Requested size: 56.9055pt x 21.70384pt.
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 26.05388pt, for example:
+(fancyhdr)                \setlength{\headheight}{26.05388pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-14.05388pt}.
+
+[8<./figures/rightAnklePitch-eps-converted-to.pdf><./figures/rightAnkleRoll-eps-converted-to.pdf><./figures/rightHipPitch-eps-converted-to.pdf><./figures/rightHipRoll-eps-converted-to.pdf><./figures/rightKneePitch-eps-converted-to.pdf>] (./main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
+
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: C8E291574A9A026035C40C8324F17C35;1849.
+(rerunfilecheck)             Checksum: 6FE24E7B2AACEDC6AE4B8E40CB42680C;2232.
 )
 (\end occurred when \ifx on line 15 was incomplete)
 
 Here is how much of LuaTeX's memory you used:
- 31548 strings out of 476447
+ 31646 strings out of 476447
  125027,1977958 words of node,token memory allocated
- 617 words of node memory still in use:
-   8 hlist, 2 vlist, 2 rule, 5 glue, 4 kern, 1 glyph, 26 attribute, 58 glue_spec, 15 attribute_list, 3 write nodes
-   avail lists: 1:1,2:767,3:226,4:80,5:259,6:46,7:2698,8:33,9:426,10:7,11:276
- 52875 multiletter control sequences out of 65536+600000
- 112 fonts using 28234535 bytes
+ 587 words of node memory still in use:
+   8 hlist, 2 vlist, 2 rule, 5 glue, 4 kern, 1 glyph, 16 attribute, 58 glue_spec, 10 attribute_list, 3 write nodes
+   avail lists: 2:781,3:223,4:101,5:181,6:50,7:2346,8:2,9:340,10:9,11:280
+ 52940 multiletter control sequences out of 65536+600000
+ 112 fonts using 28234711 bytes
  115i,15n,115p,551b,2768s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024/texmf-dist/fonts/opentype/public/kpfonts-otf/KpRoman-Italic.otf></usr/local/texlive/2024/texmf-dist/fonts/opentype/public/kpfonts-otf/KpMath-Regular.otf></usr/local/texlive/2024/texmf-dist/fonts/opentype/public/kpfonts-otf/KpMath-Regular.otf></usr/local/texlive/2024/texmf-dist/fonts/opentype/public/kpfonts-otf/KpMath-Regular.otf></usr/local/texlive/2024/texmf-dist/fonts/opentype/public/kpfonts-otf/KpMono-Bold.otf></usr/local/texlive/2024/texmf-dist/fonts/opentype/public/kpfonts-otf/KpMono-Regular.otf></usr/local/texlive/2024/texmf-dist/fonts/opentype/public/kpfonts-otf/KpRoman-Regular.otf></usr/local/texlive/2024/texmf-dist/fonts/opentype/public/kpfonts-otf/KpRoman-Bold.otf>
-Output written on main.pdf (7 pages, 530675 bytes).
+</usr/local/texlive/2024/texmf-dist/fonts/opentype/public/kpfonts-otf/KpMono-Bold.otf></usr/local/texlive/2024/texmf-dist/fonts/opentype/public/kpfonts-otf/KpRoman-Italic.otf></usr/local/texlive/2024/texmf-dist/fonts/opentype/public/kpfonts-otf/KpMono-Regular.otf></usr/local/texlive/2024/texmf-dist/fonts/opentype/public/kpfonts-otf/KpRoman-BoldItalic.otf></usr/local/texlive/2024/texmf-dist/fonts/opentype/public/kpfonts-otf/KpRoman-Regular.otf></usr/local/texlive/2024/texmf-dist/fonts/opentype/public/kpfonts-otf/KpRoman-Bold.otf>
+Output written on main.pdf (8 pages, 716554 bytes).
 
-PDF statistics: 400 PDF objects out of 1000 (max. 8388607)
- 167 compressed objects within 2 object streams
- 28 named destinations out of 1000 (max. 131072)
- 88 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 703 PDF objects out of 1000 (max. 8388607)
+ 209 compressed objects within 3 object streams
+ 26 named destinations out of 1000 (max. 131072)
+ 112 words of extra memory for PDF output out of 10000 (max. 100000000)
 

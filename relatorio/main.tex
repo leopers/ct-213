@@ -6,7 +6,7 @@
 \usepackage[brazil]{babel}
 
 % Layout da página
-\usepackage[a4paper, margin=1in]{geometry}
+\usepackage[a4paper, margin=0.8in]{geometry}
 \usepackage{setspace}
 \setstretch{1.5} % Espaçamento entre linhas
 
@@ -47,7 +47,7 @@
     \textbf{Inteligência Artificial para Robótica Móvel CT-213}\\
     \Large Instituto Tecnológico de Aeronáutica 
 
-    \textbf{Relatório do Laboratório 5 - Estratégias Evolutivas}\\
+    \textbf{Relatório do Laboratório 7 - \textit{Imitation Learning} com Keras}\\
 }
 \author{
     Leonardo Peres Dias 
@@ -88,120 +88,180 @@
 
 \section{Breve Explicação em Alto Nível da Implementação}
 
-\begin{enumerate}
-    \item \textbf{Inicialização:}
-    \begin{itemize}
-        \item Recebe dimensões de entrada, da hidden layer e da saída.
-        \item Pesos são inicializados com distribuição gaussiana (\texttt{0.001 * randn}).
-        \item biases começam em zero.
-    \end{itemize}
+A rede neural foi implementada utilizando a API Keras. Nesta implementação, foi utilizado um modelo feedforward composto por três camadas densas. A primeira camada possui 75 neurônios com ativação linear e recebe um vetor de entrada unidimensional. Em seguida, aplica-se a função de ativação Leaky ReLU com um parâmetro de inclinação de 0.01.
 
-    \item \textbf{Propagação Direta (\texttt{forward\_propagation}):}
-    \begin{itemize}
-        \item Ativações da camada 0 são as próprias entradas.
-        \item Para cada camada $l=1,2$: $z^{(l)} = W^{(l)} a^{(l-1)} + b^{(l)}$,
-        $a^{(l)} = \sigma(z^{(l)})$.
-    \end{itemize}
+Posteriormente, a segunda camada densa, composta por 50 neurônios, também utiliza uma ativação linear seguida de uma camada Leaky ReLU. Por fim, a terceira camada densa, com 20 neurônios sem a aplicação de uma função de ativação adicional (ativação linear).
 
-    \item \textbf{Função de Custo (\texttt{compute\_cost}):}
-    \begin{itemize}
-        \item Mean binary cross entropy sobre todas as amostras:
-        \[ J = -\frac{1}{m} \sum_i \bigl[y_i \ln \hat y_i + (1-y_i)\ln(1-\hat y_i)\bigr]. \]
-    \end{itemize}
-
-    \item \textbf{Cálculo dos Gradientes (\texttt{compute\_gradient\_back\_propagation}):}
-    \begin{itemize}
-        \item Erro de saída: $\delta^{(2)} = \hat y - y$.
-        \item $\delta^{(1)} = W^{(2)\!T}\,\delta^{(2)} \;\ast\; \sigma'(z^{(1)})$.
-        \item Gradiente dos pesos: $\nabla_{W^{(l)}} = \frac{1}{m} \bigl(\delta^{(l)}\,a^{(l-1)T}\bigr)$.
-        \item Gradiente dos bias: média de $\delta^{(l)}$ ao longo das amostras.
-    \end{itemize}
-
-    \item \textbf{\texttt{back\_propagation}:}
-    \begin{itemize}
-        \item Para cada camada $l$:
-        $W^{(l)} \gets W^{(l)} - \alpha\,\nabla_{W^{(l)}}$ e
-        $b^{(l)} \gets b^{(l)} - \alpha\,\nabla_{b^{(l)}}$.
-    \end{itemize}
-\end{enumerate}
+O modelo utiliza o otimizador Adam com o objetivo de minimizar a função de custo definida pelo erro quadrático médio (MSE). Durante o treinamento, o conjunto de dados é fornecido ao modelo em um único batch correspondentes ao tamanho total do dataset.
 
 \newpage
 
 \section{Figuras Comprovando Funcionamento do Código}
 
-\subsection{Função de Classificação \textnormal{sum\_gt\_zeros}}
+
+\subsection{Função de Classificação \texttt{sum\_gt\_zeros}}
+
+\subsubsection{Sem regularização}
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=0.45\textwidth]{dataset_sum_gt_zero.eps}
+    % Primeira linha: duas figuras lado a lado
+    \begin{minipage}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/convergence_sgz_l0.0.eps}
+        \caption{Convergência do custo}
+    \end{minipage}
     \hfill
-    \includegraphics[width=0.45\textwidth]{neural_net_classification_sum_gt_zero.eps}
-    \caption{Tarefa de classificação.}
+    \begin{minipage}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/dataset_sgz_l0.0.eps}
+        \caption{Dataset}
+    \end{minipage}
+    
+    \vspace{0.5cm} % Espaçamento entre as linhas
+    
+    % Segunda linha: figura centralizada
+    \includegraphics[width=0.9\linewidth]{figures/nn_classification_sgz_l0.0.eps}
+    \caption{Tarefa de classificação}
+    
+    \label{fig:three_figures}
 \end{figure}
 
+\subsubsection{Com regularização}
+
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=0.45\textwidth]{cost_function_convergence_sum_gt_zero.eps}
-    \caption{Convergência da função de custo.}
+    % Primeira linha: duas figuras lado a lado
+    \begin{minipage}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/convergence_sgz_l0.002.eps}
+        \caption{Convergência do custo}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/dataset_sgz_l0.002.eps}
+        \caption{Dataset}
+    \end{minipage}
+    
+    \vspace{0.5cm} % Espaçamento entre as linhas
+    
+    % Segunda linha: figura centralizada
+    \includegraphics[width=0.9\linewidth]{figures/nn_classification_sgz_l0.002.eps}
+    \caption{Tarefa de classificação}
+    
+    \label{fig:three_figures}
 \end{figure}
 
 \newpage
-
 \subsection{Função de Classificação XOR}
-\begin{figure}[!h]
-    \centering
-    \includegraphics[width=0.45\textwidth]{dataset_xor.eps}
-    \hfill
-    \includegraphics[width=0.45\textwidth]{neural_net_classification_xor.eps}
-    \caption{Tarefa de classificação.}
-\end{figure}
+
+\subsubsection{Sem regularização}
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=0.45\textwidth]{cost_function_convergence_xor.eps}
-    \caption{Convergência da função de custo.}
+    % Primeira linha: duas figuras lado a lado
+    \begin{minipage}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/convergence_xor_l0.0.eps}
+        \caption{Convergência do custo}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/dataset_xor_l0.0.eps}
+        \caption{Dataset}
+    \end{minipage}
+    
+    \vspace{0.5cm} % Espaçamento entre as linhas
+    
+    % Segunda linha: figura centralizada
+    \includegraphics[width=0.9\linewidth]{figures/nn_classification_xor_l0.0.eps}
+    \caption{Tarefa de classificação}
+    
+    \label{fig:three_figures}
 \end{figure}
 
 \newpage
 
-\subsection{Segmentação de Cores}
+\subsubsection{Com regularização}
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=0.45\textwidth]{original_image.eps}
+    % Primeira linha: duas figuras lado a lado
+    \begin{minipage}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/convergence_xor_l0.002.eps}
+        \caption{Convergência do custo}
+    \end{minipage}
     \hfill
-    \includegraphics[width=0.45\textwidth]{segmented_image.eps}
-    \caption{Tarefa de segmentação.}
-\end{figure}
-
-\begin{figure}[!h]
-    \centering
-    \includegraphics[width=0.45\textwidth]{cost_function_convergence_segmentation.eps}
-    \caption{Convergência da função de custo.}
+    \begin{minipage}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/dataset_xor_l0.002.eps}
+        \caption{Dataset}
+    \end{minipage}
+    
+    \vspace{0.5cm} % Espaçamento entre as linhas
+    
+    % Segunda linha: figura centralizada
+    \includegraphics[width=0.9\linewidth]{figures/nn_classification_xor_l0.002.eps}
+    \caption{Tarefa de classificação}
+    
+    \label{fig:three_figures}
 \end{figure}
 
 \newpage
+
+\subsection{\textit{Imitation Learning}}
+
+\begin{figure}[htbp]
+    \centering
+    % Primeira linha: duas imagens lado a lado
+    \begin{minipage}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/rightAnklePitch.eps}
+        \label{fig:image1}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/rightAnkleRoll.eps}
+        \label{fig:image2}
+    \end{minipage}
+    
+    \vspace{1em} % Espaço entre as linhas
+    
+    % Segunda linha: três imagens lado a lado
+    \begin{minipage}[b]{0.3\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/rightHipPitch.eps}
+        \label{fig:image3}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.3\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/rightHipRoll.eps}
+        \label{fig:image4}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.3\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/rightKneePitch.eps}
+        \label{fig:image5}
+    \end{minipage}
+    
+    \caption{Movimento das juntas do robô obtidas pela rede neural.}
+    \label{fig:cinco_imagens}
+\end{figure}
+
 \section{Discussões}
 
-\subsection{Classificação “Soma > 0”}
-O dataset é linearmente separável e, portanto, observa-se que:
-\begin{itemize}
-  \item A função de custo converge rapidamente a valores próximos de zero, refletindo a separabilidade.  
-  \item O gráfico de \textit{cost function} apresenta curva suave e decrescente sem oscilações, indicando estabilidade do gradiente.  
-  \item A fronteira de decisão resultante classifica corretamente todos os pontos de teste, evidenciando que a arquitetura é suficiente para esse problema.
-\end{itemize}
+\subsection{Regularização}
 
-\subsection{Classificação XOR}
-O problema XOR é não linearmente separável e, portanto, nota-se que:
-\begin{itemize}
-  \item A convergência do custo é mais lenta e atinge um mínimo acima de zero.
-  \item Apesar disso, a rede consegue aprender bem o XOR errando minimamente a classificação.
-\end{itemize}
+Nota-se que o emprego de regularização L2 na tarefa de classificação \texttt{sum\_gt\_zeros} não trouxe resultados relevantes, uma vez que o dataset é linearmente separável. No entanto, na tarefa de classificação XOR, a regularização L2 demonstrou um desempenho superior em comparação à ausência de regularização, visto que previniu a rede de realizar \textit{overfitting} e, assim, perder poder de generalização.
 
-\subsection{Segmentação de Imagem}
-A tarefa de segmentação utiliza a mesma rede para classificar cada pixel entre branco e verde.
-\begin{itemize}
-  \item A convergência do custo é mais ruidosa. 
-  \item A segmentação da imagem, classifica como verde cores que são próximas. 
-\end{itemize}
+
+\subsection{\textit{Imitation Learning}}
+
+A rede neural foi capaz de aprender o movimento, reproduzindo o movimento das juntas do robô. A comparação entre os movimentos reais e os previstos pela rede neural mostra que a rede conseguiu capturar o padrão de movimento desejado, embora com algumas variações.
 \end{document}
