@@ -1,13 +1,6 @@
 \babel@toc {brazil}{}\relax 
 \contentsline {section}{\numberline {1}Breve Explicação em Alto Nível da Implementação}{3}{section.1}%
 \contentsline {section}{\numberline {2}Figuras Comprovando Funcionamento do Código}{4}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Função de Classificação \texttt {sum\_gt\_zeros}}{4}{subsection.2.1}%
-\contentsline {subsubsection}{\numberline {2.1.1}Sem regularização}{4}{subsubsection.2.1.1}%
-\contentsline {subsubsection}{\numberline {2.1.2}Com regularização}{5}{subsubsection.2.1.2}%
-\contentsline {subsection}{\numberline {2.2}Função de Classificação XOR}{6}{subsection.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.1}Sem regularização}{6}{subsubsection.2.2.1}%
-\contentsline {subsubsection}{\numberline {2.2.2}Com regularização}{7}{subsubsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.3}\textit {Imitation Learning}}{8}{subsection.2.3}%
-\contentsline {section}{\numberline {3}Discussões}{8}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Regularização}{8}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}\textit {Imitation Learning}}{8}{subsection.3.2}%
+\contentsline {subsection}{\numberline {2.1}Evolução do treinamento no \textit {TensorBoard}}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Avaliação da LeNet-5}{5}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Discussões dos Resultados}{5}{section.3}%
