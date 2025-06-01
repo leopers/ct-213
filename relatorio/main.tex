@@ -21,6 +21,7 @@
 \usepackage{hyperref} % Links clicáveis
 \usepackage{background} % Fundo para a página de título
 \usepackage{placeins} % Controle de posicionamento de floats (FloatBarrier)
+\usepackage{pdfpages}
 % Ensure the package is loaded correctly for \floatbarrier
 
 \hypersetup{
@@ -47,7 +48,7 @@
     \textbf{Inteligência Artificial para Robótica Móvel CT-213}\\
     \Large Instituto Tecnológico de Aeronáutica 
 
-    \textbf{Relatório do Laboratório 8 - Redes Neurais Convolucionais}\\
+    \textbf{Relatório do Laboratório 9 - Detecção de Objetos}\\
 }
 \author{
     Leonardo Peres Dias 
@@ -88,70 +89,87 @@
 
 \section{Breve Explicação em Alto Nível da Implementação}
 
-A implementação da rede LeNet-5 foi realizada utilizando a API \texttt{Sequential} do Keras. A arquitetura segue de forma fiel o modelo original proposto por LeCun et al., composto por uma combinação de camadas convolucionais, de pooling e densas. A rede recebe como entrada imagens em escala de cinza com resolução $32 \times 32$.
+A rede neural convolucional implementada para detecção de objetos segue uma arquitetura inspirada no modelo YOLO (You Only Look Once), adaptada para imagens com resolução de $120 \times 160$ pixels. A saída da rede possui dimensões $(15, 20, 10)$, correspondendo a uma grade de $15 \times 20$ células, cada uma com um vetor de 10 atributos.
 
-O modelo é estruturado da seguinte forma:
+A arquitetura é composta por nove camadas convolucionais principais, intercaladas com \textit{Batch Normalization} e funções de ativação Leaky ReLU. O modelo pode ser dividido em três blocos principais:
 
 \begin{itemize}
-    \item Uma camada convolucional com 6 filtros $5 \times 5$ e função de ativação tangente hiperbólica (tanh), produzindo saídas de dimensão $28 \times 28 \times 6$.
-    \item Uma camada de pooling média (average pooling) com janelas $2 \times 2$ e stride 2, reduzindo a dimensão para $14 \times 14 \times 6$.
-    \item Uma segunda camada convolucional com 16 filtros $5 \times 5$ e ativação \texttt{tanh}, resultando em mapas de ativação de tamanho $10 \times 10 \times 16$.
-    \item Uma nova camada de pooling média, que reduz a saída para $5 \times 5 \times 16$.
-    \item Uma terceira camada convolucional com 120 filtros $5 \times 5$ e ativação \texttt{tanh}, produzindo uma saída de dimensão $1 \times 1 \times 120$.
-    \item A saída é achatada (flatten) e conectada a uma camada densa com 84 neurônios e ativação \texttt{tanh}.
-    \item Por fim, a rede possui uma camada de saída com 10 neurônios e ativação \texttt{softmax}, adequada para classificação em 10 classes.
+    \item \textbf{Extração de características}: As primeiras camadas convolucionais extraem características locais da imagem, com aumento progressivo da profundidade do mapa de ativação (de 8 até 64 filtros), seguidas por operações de \textit{MaxPooling} que reduzem a resolução espacial.
+
+    \item \textbf{Bloco de salto (skip connection)}: Após a sexta camada convolucional, é realizada uma conexão residual, permitindo o reaproveitamento de características de nível intermediário.
+
+    \item \textbf{Concatenação e previsão}: As saídas da skip connection e da oitava camada convolucional são concatenadas. Em seguida, uma última convolução $1 \times 1$ com 10 filtros gera a saída final, representando as probabilidades e parâmetros das bounding boxes para bola e traves.
+\end{itemize}
+
+Já a classe \texttt{YoloDetector} implementa a lógica de detecção de objetos (bola e traves) a partir de imagens da câmera do robô, utilizando uma rede neural do tipo YOLO treinada previamente e salva no formato \texttt{.hdf5}.
+
+\begin{itemize}
+    \item \textbf{Inicialização do modelo}: no método \texttt{\_\_init\_\_()}, o modelo é carregado com a função \texttt{load\_model} do Keras e os tamanhos das \textit{anchor boxes} para bola e trave são definidos.
+
+    \item \textbf{Pré-processamento da imagem}: o método \texttt{preprocess\_image()} redimensiona a imagem de entrada de $640 \times 480$ para $160 \times 120$ e normaliza os pixels para o intervalo $[0, 1]$. O formato final da imagem se torna $(1, 120, 160, 3)$, compatível com a entrada da rede.
+
+    \item \textbf{Inferência e detecção}: o método \texttt{detect()} realiza a predição da rede neural com a imagem processada e chama \texttt{process\_yolo\_output()} para extrair as detecções.
+
+    \item \textbf{Processamento da saída da rede}: o método \texttt{process\_yolo\_output()} interpreta a saída da rede YOLO, que possui formato $(15, 20, 10)$. Cada célula da grade representa uma sub-região da imagem e contém:
+
+    \begin{itemize}
+        \item Para a bola: $(t_b, t_{xb}, t_{yb}, t_{wb}, t_{hb})$
+        \item Para as traves: $(t_p, t_{xp}, t_{yp}, t_{wp}, t_{hp})$
+    \end{itemize}
+
+    Os valores $t$ são transformados, sendo posteriormente multiplicados por fatores de escala e pelas dimensões das \textit{anchor boxes}. A célula com maior probabilidade para a bola é selecionada, e as duas melhores para as traves são escolhidas.
+
+    \item \textbf{Formato final da detecção}: cada objeto detectado é representado por uma tupla de 5 elementos: $(\text{probabilidade}, x, y, \text{largura}, \text{altura})$, indicando a confiança da detecção e a caixa delimitadora no espaço da imagem original.
 \end{itemize}
 
 \newpage
 
-\section{Figuras Comprovando Funcionamento do Código}
-\subsection{Evolução do treinamento no \textit{TensorBoard}}
-\begin{figure}[htbp]
-    \centering
-    \begin{tabular}{cc}
-        \includegraphics[width=0.45\textwidth]{epoch_accuracy.png} &
-        \includegraphics[width=0.45\textwidth]{epoch_learning_rate.png} \\
-        \includegraphics[width=0.45\textwidth]{epoch_loss.png} &
-        \includegraphics[width=0.45\textwidth]{evaluatoion_acc_vs_iterations.png} \\
-        \multicolumn{2}{c}{%
-            \includegraphics[width=0.45\textwidth]{evaluation_loss_vs_iterations.png}%
-        } \\
-    \end{tabular}
-    \caption{Evolução das métricas de treinamento.}
-    \label{fig:images-grid}
-\end{figure}
+\includepdf[pages=-, pagecommand={}, scale=0.90]{ITA_YOLO_model_summary_COMPLETE.pdf}
 
 \newpage
-\subsection{Avaliação da LeNet-5}
+
+\section{Figuras Comprovando Funcionamento do Código}
 
 \begin{figure}[htbp]
     \centering
-    \begin{minipage}{0.45\textwidth}
+    % Primeira linha: três imagens
+    \begin{minipage}[b]{0.3\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{predicaocerta.png}
-        \caption{Predição correta da rede.}
-        \label{fig:imagem1}
-    \end{minipage}\hfill
-    \begin{minipage}{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{predicaoerrada.png}
-        \caption{Predição errada da rede.}
-        \label{fig:imagem2}
+        \includegraphics[width=\textwidth]{imagem1.png}
+        
     \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{imagem2.png}
+      
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{imagem3.png}
+ 
+    \end{minipage}
+    
+    \vspace{0.5cm}
+    
+    % Segunda linha: duas imagens centralizadas
+    \begin{minipage}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{imagem4.png}
+
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{imagem5.png}
+   
+    \end{minipage}
+    \caption{Exemplos de deteção feitas pela YOLO.}
 \end{figure}
 
-\section{Discussões dos Resultados}
+\section{Discussão}
 
-Observa-se na curva de acurácia por época que o modelo apresentou uma evolução consistente durante o treinamento, alcançando aproximadamente 99.5\% de acurácia no conjunto de treino e cerca de 98.8\% no conjunto de validação após 10 épocas. Essa diferença entre treino e validação é pequena, indicando que o modelo generaliza bem para dados não vistos.
-
-A curva de perda (\textit{loss}) de maneira suave tanto para o treino quanto para a validação, refletindo o aprendizado efetivo da rede. A \textit{loss} final de validação estabiliza em torno de 0.039, o que corrobora o bom desempenho do modelo.
-
-O gráfico de taxa de aprendizado confirma que foi utilizada uma taxa fixa de 0.001 durante todas as épocas, sem agendamentos dinâmicos.
-
-Já os gráficos de avaliação por iteração mostram que, conforme o número de iterações aumenta, a acurácia de validação sobe gradualmente, alcançando cerca de 98.7\% ao final do treinamento, enquanto a \textit{loss} de validação apresenta tendência de queda, reforçando a convergêcia do processo de otimização.
-
-
-Os exemplos apresentados evidenciam tanto a capacidade da rede em reconhecer corretamente os dígitos quanto suas limitações em casos ambíguos. O erro de classificação observado é compreensível, dado que certos dígitos manuscritos podem ter formas semelhantes, o que pode confundir mesmo classificadores robustos como a LeNet-5.
-
+As figuras mostram que o detector é capaz de localizar corretamente a bola (caixa azul) e as traves (caixas verde e vermelha) em diferentes cenários. A bola foi detectada com precisão em diversas escalas e posições, mesmo quando parcialmente ocluída. As traves também foram bem identificadas, inclusive em imagens com perspectiva ou múltiplos elementos no fundo. Os resultados indicam que a rede generaliza bem para diferentes situações do jogo.
 
 \end{document}

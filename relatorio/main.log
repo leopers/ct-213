@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.18.0 (TeX Live 2024)  (format=lualatex 2024.12.7)  24 MAY 2025 19:13
+This is LuaHBTeX, Version 1.18.0 (TeX Live 2024)  (format=lualatex 2024.12.7)  1 JUN 2025 12:55
  restricted system commands enabled.
  file:line:error style messages enabled.
 **/Users/leonardodias/ct-213/relatorio/main
@@ -1100,31 +1100,66 @@ Package: afterpage 2023/07/04 v1.08 After-Page Package (DPC)
 \AP@footins=\box67
 )) (/usr/local/texlive/2024/texmf-dist/tex/latex/placeins/placeins.sty
 Package: placeins 2005/04/18  v 2.2
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+Package: pdfpages 2024/01/21 v0.5y Insert pages of external PDF documents (AM)
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2023/07/08 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count327
+\calc@Bcount=\count328
+\calc@Adimen=\dimen287
+\calc@Bdimen=\dimen288
+\calc@Askip=\skip65
+\calc@Bskip=\skip66
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count329
+\calc@Cskip=\skip67
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+Package: eso-pic 2023/05/03 v3.0c eso-pic (RN)
+\ESO@tempdima=\dimen289
+\ESO@tempdimb=\dimen290
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 31.
+\AM@pagewidth=\dimen291
+\AM@pageheight=\dimen292
+\AM@fboxrule=\dimen293
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/pdfpages/ppluatex.def
+File: ppluatex.def 2024/01/21 v0.5y Pdfpages driver for LuaTeX (AM)
+)
+\pdfpages@includegraphics@status=\count330
+\AM@pagebox=\box68
+\AM@global@opts=\toks44
+\AM@pagecnt=\count331
+\AM@toc@title=\toks45
+\AM@lof@heading=\toks46
+\c@AM@survey=\count332
+\AM@templatesizebox=\box69
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 32.
  (./main.aux)
 \openout1 = main.aux
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: luatex
@@ -1161,33 +1196,33 @@ LaTeX Font Info:    ... okay on input line 70.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  TU/KpMath-Regular.otf(1)/m/n --> TU/KpRoman(1)/m/n on input line 70.
+(Font)                  TU/KpMath-Regular.otf(1)/m/n --> TU/KpRoman(1)/m/n on input line 71.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/KpRoman(1)/m/it on input line 70.
+(Font)                  OT1/cmr/m/it --> TU/KpRoman(1)/m/it on input line 71.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  TU/KpMath-Regular.otf(1)/b/n --> TU/KpRoman(1)/b/n on input line 70.
+(Font)                  TU/KpMath-Regular.otf(1)/b/n --> TU/KpRoman(1)/b/n on input line 71.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/KpSans(0)/m/n on input line 70.
+(Font)                  OT1/cmss/m/n --> TU/KpSans(0)/m/n on input line 71.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/KpSans(0)/b/n on input line 70.
+(Font)                  OT1/cmss/bx/n --> TU/KpSans(0)/b/n on input line 71.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/KpMono(0)/m/n on input line 70.
+(Font)                  OT1/cmtt/m/n --> TU/KpMono(0)/m/n on input line 71.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/KpMono(0)/b/n on input line 70.
-LaTeX Info: Redefining \idotsint on input line 70.
+(Font)                  OT1/cmtt/m/n --> TU/KpMono(0)/b/n on input line 71.
+LaTeX Info: Redefining \idotsint on input line 71.
 (/usr/local/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count327
-\scratchdimen=\dimen287
-\scratchbox=\box68
-\nofMPsegments=\count328
-\nofMParguments=\count329
-\everyMPshowfont=\toks44
-\MPscratchCnt=\count330
-\MPscratchDim=\dimen288
-\MPnumerator=\count331
-\makeMPintoPDFobject=\count332
-\everyMPtoPDFconversion=\toks45
+\scratchcounter=\count333
+\scratchdimen=\dimen294
+\scratchbox=\box70
+\nofMPsegments=\count334
+\nofMParguments=\count335
+\everyMPshowfont=\toks47
+\MPscratchCnt=\count336
+\MPscratchDim=\dimen295
+\MPnumerator=\count337
+\makeMPintoPDFobject=\count338
+\everyMPtoPDFconversion=\toks48
 ) (/usr/local/texlive/2024/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -1197,19 +1232,28 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring ON on input line 70.
+Package hyperref Info: Link coloring ON on input line 71.
  (./main.out) (./main.out)
 \@outlinefile=\write4
 
 \openout4 = main.out
-<ITA.png, id=27, 458.23369pt x 174.78342pt>
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+Package: pdflscape 2022-10-27 v0.13 Display of landscape pages in PDF
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/pdflscape/pdflscape-nometadata.sty
+Package: pdflscape-nometadata 2022-10-28 v0.13 Display of landscape pages in PDF (HO)
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/graphics/lscape.sty
+Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
+))
+<ITA.png, id=19, 458.23369pt x 174.78342pt>
 File: ITA.png Graphic file (type png)
 <use ITA.png>
-Package luatex.def Info: ITA.png  used on input line 81.
+Package luatex.def Info: ITA.png  used on input line 82.
 (luatex.def)             Requested size: 227.62204pt x 86.82343pt.
 File: ITA.png Graphic file (type png)
 <use ITA.png>
-Package luatex.def Info: ITA.png  used on input line 81.
+Package luatex.def Info: ITA.png  used on input line 82.
 (luatex.def)             Requested size: 227.62204pt x 86.82343pt.
  [1
 
@@ -1219,7 +1263,7 @@ Package luatex.def Info: ITA.png  used on input line 81.
 \openout5 = main.toc
 File: ITA.png Graphic file (type png)
 <use ITA.png>
-Package luatex.def Info: ITA.png  used on input line 86.
+Package luatex.def Info: ITA.png  used on input line 87.
 (luatex.def)             Requested size: 56.9055pt x 21.70384pt.
 
 
@@ -1230,11 +1274,14 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-14.05388pt}.
 
 [2]
+Overfull \hbox (1.97054pt too wide) in paragraph at lines 113--114
+[]\TU/KpRoman(1)/b/n/12 Pro-ces-sa-mento da saída da rede\TU/KpRoman(1)/m/n/12 : o mé-todo \TU/KpMono(0)/m/n/12 process_yolo_output() \TU/KpRoman(1)/m/n/12 in-ter-preta a saída
+ []
+
 File: ITA.png Graphic file (type png)
 <use ITA.png>
-Package luatex.def Info: ITA.png  used on input line 105.
+Package luatex.def Info: ITA.png  used on input line 114.
 (luatex.def)             Requested size: 56.9055pt x 21.70384pt.
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 26.05388pt, for example:
@@ -1243,34 +1290,9 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-14.05388pt}.
 
 [3]
-<epoch_accuracy.png, id=53, 479.7925pt x 372.39125pt>
-File: epoch_accuracy.png Graphic file (type png)
-<use epoch_accuracy.png>
-Package luatex.def Info: epoch_accuracy.png  used on input line 112.
-(luatex.def)             Requested size: 216.84248pt x 168.30183pt.
-<epoch_learning_rate.png, id=54, 476.78125pt x 351.3125pt>
-File: epoch_learning_rate.png Graphic file (type png)
-<use epoch_learning_rate.png>
-Package luatex.def Info: epoch_learning_rate.png  used on input line 113.
-(luatex.def)             Requested size: 216.84248pt x 159.7831pt.
-<epoch_loss.png, id=55, 472.76625pt x 373.395pt>
-File: epoch_loss.png Graphic file (type png)
-<use epoch_loss.png>
-Package luatex.def Info: epoch_loss.png  used on input line 114.
-(luatex.def)             Requested size: 216.84248pt x 171.2681pt.
-<evaluatoion_acc_vs_iterations.png, id=56, 474.77374pt x 353.32pt>
-File: evaluatoion_acc_vs_iterations.png Graphic file (type png)
-<use evaluatoion_acc_vs_iterations.png>
-Package luatex.def Info: evaluatoion_acc_vs_iterations.png  used on input line 115.
-(luatex.def)             Requested size: 216.84248pt x 161.37006pt.
-<evaluation_loss_vs_iterations.png, id=57, 475.7775pt x 341.275pt>
-File: evaluation_loss_vs_iterations.png Graphic file (type png)
-<use evaluation_loss_vs_iterations.png>
-Package luatex.def Info: evaluation_loss_vs_iterations.png  used on input line 118.
-(luatex.def)             Requested size: 216.84248pt x 155.54073pt.
 File: ITA.png Graphic file (type png)
 <use ITA.png>
-Package luatex.def Info: ITA.png  used on input line 124.
+Package luatex.def Info: ITA.png  used on input line 125.
 (luatex.def)             Requested size: 56.9055pt x 21.70384pt.
 
 
@@ -1280,20 +1302,36 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-14.05388pt}.
 
-[4<./epoch_accuracy.png><./epoch_learning_rate.png><./epoch_loss.png><./evaluatoion_acc_vs_iterations.png><./evaluation_loss_vs_iterations.png>]
-<predicaocerta.png, id=69, 331.7193pt x 314.3745pt>
-File: predicaocerta.png Graphic file (type png)
-<use predicaocerta.png>
-Package luatex.def Info: predicaocerta.png  used on input line 131.
-(luatex.def)             Requested size: 216.84248pt x 205.51144pt.
-<predicaoerrada.png, id=70, 331.7193pt x 314.3745pt>
-File: predicaoerrada.png Graphic file (type png)
-<use predicaoerrada.png>
-Package luatex.def Info: predicaoerrada.png  used on input line 137.
-(luatex.def)             Requested size: 216.84248pt x 205.51144pt.
+[4]
+<ITA_YOLO_model_summary_COMPLETE.pdf, id=48, 490.53262pt x 1072.28416pt>
+File: ITA_YOLO_model_summary_COMPLETE.pdf Graphic file (type pdf)
+<use ITA_YOLO_model_summary_COMPLETE.pdf>
+Package luatex.def Info: ITA_YOLO_model_summary_COMPLETE.pdf  used on input line 127.
+(luatex.def)             Requested size: 490.53142pt x 1072.28156pt.
+File: ITA_YOLO_model_summary_COMPLETE.pdf Graphic file (type pdf)
+<use ITA_YOLO_model_summary_COMPLETE.pdf>
+Package luatex.def Info: ITA_YOLO_model_summary_COMPLETE.pdf  used on input line 127.
+(luatex.def)             Requested size: 490.53142pt x 1072.28156pt.
+<ITA_YOLO_model_summary_COMPLETE.pdf, id=51, page=1, 490.53262pt x 1072.28416pt>
+File: ITA_YOLO_model_summary_COMPLETE.pdf Graphic file (type pdf)
+<use ITA_YOLO_model_summary_COMPLETE.pdf, page 1>
+Package luatex.def Info: ITA_YOLO_model_summary_COMPLETE.pdf , page1 used on input line 127.
+(luatex.def)             Requested size: 490.53142pt x 1072.28156pt.
+File: ITA_YOLO_model_summary_COMPLETE.pdf Graphic file (type pdf)
+<use ITA_YOLO_model_summary_COMPLETE.pdf, page 1>
+Package luatex.def Info: ITA_YOLO_model_summary_COMPLETE.pdf , page1 used on input line 127.
+(luatex.def)             Requested size: 441.47528pt x 965.04684pt.
+File: ITA_YOLO_model_summary_COMPLETE.pdf Graphic file (type pdf)
+<use ITA_YOLO_model_summary_COMPLETE.pdf, page 1>
+Package luatex.def Info: ITA_YOLO_model_summary_COMPLETE.pdf , page1 used on input line 127.
+(luatex.def)             Requested size: 441.47528pt x 965.04684pt.
+File: ITA_YOLO_model_summary_COMPLETE.pdf Graphic file (type pdf)
+<use ITA_YOLO_model_summary_COMPLETE.pdf, page 1>
+Package luatex.def Info: ITA_YOLO_model_summary_COMPLETE.pdf , page1 used on input line 127.
+(luatex.def)             Requested size: 441.47528pt x 965.04684pt.
 File: ITA.png Graphic file (type png)
 <use ITA.png>
-Package luatex.def Info: ITA.png  used on input line 157.
+Package luatex.def Info: ITA.png  used on input line 127.
 (luatex.def)             Requested size: 56.9055pt x 21.70384pt.
 
 
@@ -1303,30 +1341,74 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-14.05388pt}.
 
-[5<./predicaocerta.png><./predicaoerrada.png>] (./main.aux)
+File: ITA_YOLO_model_summary_COMPLETE.pdf Graphic file (type pdf)
+<use ITA_YOLO_model_summary_COMPLETE.pdf, page 1>
+Package luatex.def Info: ITA_YOLO_model_summary_COMPLETE.pdf , page1 used on input line 127.
+(luatex.def)             Requested size: 441.47528pt x 965.04684pt.
+[5
+
+<./ITA_YOLO_model_summary_COMPLETE.pdf>]
+<imagem1.png, id=142, 396.0396pt x 314.3745pt>
+File: imagem1.png Graphic file (type png)
+<use imagem1.png>
+Package luatex.def Info: imagem1.png  used on input line 138.
+(luatex.def)             Requested size: 144.5641pt x 114.75293pt.
+<imagem2.png, id=143, 396.0396pt x 314.3745pt>
+File: imagem2.png Graphic file (type png)
+<use imagem2.png>
+Package luatex.def Info: imagem2.png  used on input line 144.
+(luatex.def)             Requested size: 144.5641pt x 114.75293pt.
+<imagem3.png, id=144, 396.0396pt x 314.3745pt>
+File: imagem3.png Graphic file (type png)
+<use imagem3.png>
+Package luatex.def Info: imagem3.png  used on input line 150.
+(luatex.def)             Requested size: 144.5641pt x 114.75293pt.
+<imagem4.png, id=145, 396.0396pt x 314.3745pt>
+File: imagem4.png Graphic file (type png)
+<use imagem4.png>
+Package luatex.def Info: imagem4.png  used on input line 159.
+(luatex.def)             Requested size: 216.84248pt x 172.1294pt.
+<imagem5.png, id=146, 396.0396pt x 314.3745pt>
+File: imagem5.png Graphic file (type png)
+<use imagem5.png>
+Package luatex.def Info: imagem5.png  used on input line 165.
+(luatex.def)             Requested size: 216.84248pt x 172.1294pt.
+File: ITA.png Graphic file (type png)
+<use ITA.png>
+Package luatex.def Info: ITA.png  used on input line 175.
+(luatex.def)             Requested size: 56.9055pt x 21.70384pt.
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 26.05388pt, for example:
+(fancyhdr)                \setlength{\headheight}{26.05388pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-14.05388pt}.
+
+[6<./imagem1.png><./imagem2.png><./imagem3.png><./imagem4.png><./imagem5.png>] (./main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 7EAABB48466E361B760D641AC10CD86E;1195.
+(rerunfilecheck)             Checksum: 46189E090023790B1CBDCD58B910A789;675.
 )
 (\end occurred when \ifx on line 15 was incomplete)
 
 Here is how much of LuaTeX's memory you used:
- 31506 strings out of 476447
+ 32373 strings out of 476447
  125027,1977958 words of node,token memory allocated
- 587 words of node memory still in use:
-   8 hlist, 2 vlist, 2 rule, 5 glue, 4 kern, 1 glyph, 16 attribute, 58 glue_spec, 10 attribute_list, 3 write nodes
-   avail lists: 2:476,3:223,4:44,5:250,6:40,7:3772,8:8,9:272,10:7,11:408
- 52856 multiletter control sequences out of 65536+600000
- 110 fonts using 28015463 bytes
- 115i,15n,115p,551b,2768s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024/texmf-dist/fonts/opentype/public/kpfonts-otf/KpRoman-BoldItalic.otf></usr/local/texlive/2024/texmf-dist/fonts/opentype/public/kpfonts-otf/KpMath-Regular.otf></usr/local/texlive/2024/texmf-dist/fonts/opentype/public/kpfonts-otf/KpMono-Regular.otf></usr/local/texlive/2024/texmf-dist/fonts/opentype/public/kpfonts-otf/KpRoman-Italic.otf></usr/local/texlive/2024/texmf-dist/fonts/opentype/public/kpfonts-otf/KpRoman-Regular.otf></usr/local/texlive/2024/texmf-dist/fonts/opentype/public/kpfonts-otf/KpRoman-Bold.otf>
-Output written on main.pdf (5 pages, 376107 bytes).
+ 597 words of node memory still in use:
+   8 hlist, 2 vlist, 2 rule, 5 glue, 4 kern, 1 glyph, 16 attribute, 60 glue_spec, 10 attribute_list, 3 write nodes
+   avail lists: 2:558,3:223,4:42,5:430,6:36,7:5396,8:23,9:296,10:7,11:580
+ 53673 multiletter control sequences out of 65536+600000
+ 110 fonts using 28014935 bytes
+ 115i,18n,115p,551b,2768s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2024/texmf-dist/fonts/opentype/public/kpfonts-otf/KpMath-Regular.otf></usr/local/texlive/2024/texmf-dist/fonts/opentype/public/kpfonts-otf/KpMono-Regular.otf></usr/local/texlive/2024/texmf-dist/fonts/opentype/public/kpfonts-otf/KpRoman-Italic.otf></usr/local/texlive/2024/texmf-dist/fonts/opentype/public/kpfonts-otf/KpMath-Regular.otf></usr/local/texlive/2024/texmf-dist/fonts/opentype/public/kpfonts-otf/KpRoman-Regular.otf></usr/local/texlive/2024/texmf-dist/fonts/opentype/public/kpfonts-otf/KpRoman-Bold.otf>
+Output written on main.pdf (6 pages, 2064761 bytes).
 
-PDF statistics: 119 PDF objects out of 1000 (max. 8388607)
- 77 compressed objects within 1 object stream
- 13 named destinations out of 1000 (max. 131072)
- 56 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 198 PDF objects out of 1000 (max. 8388607)
+ 78 compressed objects within 1 object stream
+ 11 named destinations out of 1000 (max. 131072)
+ 40 words of extra memory for PDF output out of 10000 (max. 100000000)
 
