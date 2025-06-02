@@ -11,7 +11,6 @@
 \setstretch{1.5} % Espaçamento entre linhas
 
 % Fontes e formatação
-\usepackage{kpfonts}
 \usepackage{amsmath, bm} % Pacotes matemáticos
 \usepackage{graphicx} % Inclusão de imagens
 \usepackage{caption} % Estilização de legendas
@@ -48,7 +47,7 @@
     \textbf{Inteligência Artificial para Robótica Móvel CT-213}\\
     \Large Instituto Tecnológico de Aeronáutica 
 
-    \textbf{Relatório do Laboratório 9 - Detecção de Objetos}\\
+    \textbf{Relatório do Laboratório 10 - Programação Dinâmica}\\
 }
 \author{
     Leonardo Peres Dias 
@@ -89,87 +88,349 @@
 
 \section{Breve Explicação em Alto Nível da Implementação}
 
-A rede neural convolucional implementada para detecção de objetos segue uma arquitetura inspirada no modelo YOLO (You Only Look Once), adaptada para imagens com resolução de $120 \times 160$ pixels. A saída da rede possui dimensões $(15, 20, 10)$, correspondendo a uma grade de $15 \times 20$ células, cada uma com um vetor de 10 atributos.
+\subsection{Avaliação de Política}
 
-A arquitetura é composta por nove camadas convolucionais principais, intercaladas com \textit{Batch Normalization} e funções de ativação Leaky ReLU. O modelo pode ser dividido em três blocos principais:
+A avaliação de política tem como objetivo estimar a função de valor $V^\pi(s)$ para uma política fixa $\pi$, ou seja, o valor esperado do retorno acumulado ao seguir $\pi$ a partir de cada estado $s$. A equação de Bellman para avaliação de política é dada por:
 
+\begin{equation}
+V^\pi(s) = \sum_{a \in \mathcal{A}} \pi(a \mid s) \left[ R(s, a) + \gamma \sum_{s' \in \mathcal{S}} P(s' \mid s, a) V^\pi(s') \right],
+\end{equation}
+
+onde:
 \begin{itemize}
-    \item \textbf{Extração de características}: As primeiras camadas convolucionais extraem características locais da imagem, com aumento progressivo da profundidade do mapa de ativação (de 8 até 64 filtros), seguidas por operações de \textit{MaxPooling} que reduzem a resolução espacial.
-
-    \item \textbf{Bloco de salto (skip connection)}: Após a sexta camada convolucional, é realizada uma conexão residual, permitindo o reaproveitamento de características de nível intermediário.
-
-    \item \textbf{Concatenação e previsão}: As saídas da skip connection e da oitava camada convolucional são concatenadas. Em seguida, uma última convolução $1 \times 1$ com 10 filtros gera a saída final, representando as probabilidades e parâmetros das bounding boxes para bola e traves.
+  \item $\pi(a \mid s)$ é a probabilidade de executar a ação $a$ no estado $s$ sob a política $\pi$;
+  \item $R(s, a)$ é a recompensa esperada ao executar a ação $a$ no estado $s$;
+  \item $P(s' \mid s, a)$ é a probabilidade de transição para o estado $s'$ ao executar a ação $a$ no estado $s$;
+  \item $\gamma$ é o fator de desconto $(0 \leq \gamma \leq 1)$.
 \end{itemize}
 
-Já a classe \texttt{YoloDetector} implementa a lógica de detecção de objetos (bola e traves) a partir de imagens da câmera do robô, utilizando uma rede neural do tipo YOLO treinada previamente e salva no formato \texttt{.hdf5}.
+Na implementação, o algoritmo itera sobre todos os estados válidos do ambiente e atualiza seus valores de acordo com a equação acima. A política é representada como uma distribuição de probabilidade sobre as ações, e o valor de cada estado é atualizado com base na expectativa sobre as transições e as recompensas associadas.
 
-\begin{itemize}
-    \item \textbf{Inicialização do modelo}: no método \texttt{\_\_init\_\_()}, o modelo é carregado com a função \texttt{load\_model} do Keras e os tamanhos das \textit{anchor boxes} para bola e trave são definidos.
+A atualização dos valores é feita de forma iterativa até que a variação máxima entre as iterações seja menor que uma tolerância $\varepsilon$, garantindo a convergência para $V^\pi$.
 
-    \item \textbf{Pré-processamento da imagem}: o método \texttt{preprocess\_image()} redimensiona a imagem de entrada de $640 \times 480$ para $160 \times 120$ e normaliza os pixels para o intervalo $[0, 1]$. O formato final da imagem se torna $(1, 120, 160, 3)$, compatível com a entrada da rede.
 
-    \item \textbf{Inferência e detecção}: o método \texttt{detect()} realiza a predição da rede neural com a imagem processada e chama \texttt{process\_yolo\_output()} para extrair as detecções.
-
-    \item \textbf{Processamento da saída da rede}: o método \texttt{process\_yolo\_output()} interpreta a saída da rede YOLO, que possui formato $(15, 20, 10)$. Cada célula da grade representa uma sub-região da imagem e contém:
-
-    \begin{itemize}
-        \item Para a bola: $(t_b, t_{xb}, t_{yb}, t_{wb}, t_{hb})$
-        \item Para as traves: $(t_p, t_{xp}, t_{yp}, t_{wp}, t_{hp})$
-    \end{itemize}
-
-    Os valores $t$ são transformados, sendo posteriormente multiplicados por fatores de escala e pelas dimensões das \textit{anchor boxes}. A célula com maior probabilidade para a bola é selecionada, e as duas melhores para as traves são escolhidas.
-
-    \item \textbf{Formato final da detecção}: cada objeto detectado é representado por uma tupla de 5 elementos: $(\text{probabilidade}, x, y, \text{largura}, \text{altura})$, indicando a confiança da detecção e a caixa delimitadora no espaço da imagem original.
-\end{itemize}
 
 \newpage
 
-\includepdf[pages=-, pagecommand={}, scale=0.90]{ITA_YOLO_model_summary_COMPLETE.pdf}
+\subsection{Iteracão de Valor}
+
+
+O método de \textit{iteração de valor} busca encontrar a política ótima $\pi^*$ iterando sobre a equação de Bellman de otimalidade até a convergência para a função de valor ótima $V^*(s)$. A equação de Bellman de otimalidade é dada por:
+
+\begin{equation}
+V^*(s) = \max_{a \in \mathcal{A}} \left[ R(s, a) + \gamma \sum_{s' \in \mathcal{S}} P(s' \mid s, a) V^*(s') \right],
+\end{equation}
+
+onde:
+\begin{itemize}
+  \item $V^*(s)$ é o valor ótimo do estado $s$;
+  \item $R(s, a)$ é a recompensa esperada ao executar a ação $a$ no estado $s$;
+  \item $P(s' \mid s, a)$ é a probabilidade de transição para o estado $s'$ dado o par $(s, a)$;
+  \item $\gamma$ é o fator de desconto.
+\end{itemize}
+
+O algoritmo começa com uma estimativa inicial arbitrária para $V(s)$ (por exemplo, $V(s) = 0$) e atualiza os valores iterativamente conforme a equação acima. A cada iteração, calcula-se o valor de cada estado assumindo que se tomará sempre a melhor ação a partir daquele ponto.
+
+A iteração é interrompida quando a variação máxima entre os valores antigos e os novos for menor que uma tolerância $\varepsilon$, indicando convergência numérica para $V^*$. Após a convergência, uma política ótima $\pi^*$ pode ser obtida extraindo a ação que maximiza a equação de Bellman para cada estado:
+
+\begin{equation}
+\pi^*(s) = \arg\max_{a \in \mathcal{A}} \left[ R(s, a) + \gamma \sum_{s'} P(s' \mid s, a) V^*(s') \right].
+\end{equation}
 
 \newpage
 
-\section{Figuras Comprovando Funcionamento do Código}
+\subsection{Iteração de Política}
 
-\begin{figure}[htbp]
-    \centering
-    % Primeira linha: três imagens
-    \begin{minipage}[b]{0.3\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{imagem1.png}
-        
-    \end{minipage}
-    \hfill
-    \begin{minipage}[b]{0.3\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{imagem2.png}
-      
-    \end{minipage}
-    \hfill
-    \begin{minipage}[b]{0.3\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{imagem3.png}
- 
-    \end{minipage}
-    
-    \vspace{0.5cm}
-    
-    % Segunda linha: duas imagens centralizadas
-    \begin{minipage}[b]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{imagem4.png}
 
-    \end{minipage}
-    \hfill
-    \begin{minipage}[b]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{imagem5.png}
-   
-    \end{minipage}
-    \caption{Exemplos de deteção feitas pela YOLO.}
-\end{figure}
+A \textit{iteração de política} é um método iterativo que alterna entre: a \textbf{avaliação de política} e a \textbf{melhoria de política por busca gulosa}. O objetivo é encontrar a política ótima $\pi^*$ para um problema de decisão de Markov (MDP).
 
-\section{Discussão}
+\paragraph{1. Avaliação de Política} Dada uma política fixa $\pi$, estima-se a função de valor $V^\pi(s)$ resolvendo iterativamente a equação de Bellman para avaliação de política:
 
-As figuras mostram que o detector é capaz de localizar corretamente a bola (caixa azul) e as traves (caixas verde e vermelha) em diferentes cenários. A bola foi detectada com precisão em diversas escalas e posições, mesmo quando parcialmente ocluída. As traves também foram bem identificadas, inclusive em imagens com perspectiva ou múltiplos elementos no fundo. Os resultados indicam que a rede generaliza bem para diferentes situações do jogo.
+\begin{equation}
+V^\pi(s) = \sum_{a \in \mathcal{A}} \pi(a \mid s) \left[ R(s, a) + \gamma \sum_{s'} P(s' \mid s, a) V^\pi(s') \right].
+\end{equation}
+
+\paragraph{2. Melhoria de Política} A partir da função de valor $V^\pi(s)$ obtida, a política é atualizada para uma nova política $\pi'$ escolhendo, para cada estado, as ações que maximizam o valor esperado do retorno. Essa etapa utiliza a equação de Bellman de otimalidade:
+
+\begin{equation}
+\pi'(s) = \arg\max_{a \in \mathcal{A}} \left[ R(s, a) + \gamma \sum_{s'} P(s' \mid s, a) V^\pi(s') \right].
+\end{equation}
+
+\newpage
+
+\section{Tabelas Comprovando Funcionamento do Código}
+
+\subsection{Caso $p_c=1.0$ e $\gamma=1.0$}
+
+\subsubsection{Avaliação de Política}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+-384.09 & -382.73 & -381.19 & *       & -339.93 & -339.93 \\
+\hline
+-380.45 & -377.91 & -374.65 & *       & -334.92 & -334.93 \\
+\hline
+-374.34 & -368.82 & -359.85 & -344.88 & -324.92 & -324.93 \\
+\hline
+-368.76 & -358.18 & -346.03 & *       & -289.95 & -309.94 \\
+\hline
+*       & -344.12 & -315.05 & -250.02 & -229.99 & *       \\
+\hline
+-359.12 & -354.12 & *       & -200.01 & -145.00 & 0.00    \\
+\hline
+\end{tabular}
+\caption{Função valor obtida por avaliação de política.}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+SURDL & SURDL & SURDL & *     & SURDL & SURDL \\
+\hline
+SURDL & SURDL & SURDL & *     & SURDL & SURDL \\
+\hline
+SURDL & SURDL & SURDL & SURDL & SURDL & SURDL \\
+\hline
+SURDL & SURDL & SURDL & *     & SURDL & SURDL \\
+\hline
+*     & SURDL & SURDL & SURDL & SURDL & *     \\
+\hline
+SURDL & SURDL & *     & SURDL & SURDL & S     \\
+\hline
+\end{tabular}
+\caption{Política utilizada na avaliação de política.}
+\end{table}
+
+\newpage
+
+\subsubsection{Iteracão de Valor}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+-10.00 & -9.00 & -8.00 & *     & -6.00 & -7.00 \\
+\hline
+-9.00  & -8.00 & -7.00 & *     & -5.00 & -6.00 \\
+\hline
+-8.00  & -7.00 & -6.00 & -5.00 & -4.00 & -5.00 \\
+\hline
+-7.00  & -6.00 & -5.00 & *     & -3.00 & -4.00 \\
+\hline
+*      & -5.00 & -4.00 & -3.00 & -2.00 & *     \\
+\hline
+-7.00  & -6.00 & *     & -2.00 & -1.00 & 0.00  \\
+\hline
+\end{tabular}
+\caption{Função valor obtida por iteração de valor.}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+RD  & RD  & D   & *   & D   & DL   \\
+\hline
+RD  & RD  & D   & *   & D   & DL   \\
+\hline
+RD  & RD  & RD  & R   & D   & DL   \\
+\hline
+R   & RD  & D   & *   & D   & L    \\
+\hline
+*   & R   & R   & RD  & D   & *    \\
+\hline
+R   & U   & *   & R   & R   & SURD \\
+\hline
+\end{tabular}
+\caption{Política derivada da iteração de valor.}
+\end{table}
+
+\newpage
+
+\subsubsection{Iteração de Política}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+-10.00 & -9.00 & -8.00 & *     & -6.00 & -7.00 \\
+\hline
+-9.00  & -8.00 & -7.00 & *     & -5.00 & -6.00 \\
+\hline
+-8.00  & -7.00 & -6.00 & -5.00 & -4.00 & -5.00 \\
+\hline
+-7.00  & -6.00 & -5.00 & *     & -3.00 & -4.00 \\
+\hline
+*      & -5.00 & -4.00 & -3.00 & -2.00 & *     \\
+\hline
+-7.00  & -6.00 & *     & -2.00 & -1.00 & 0.00  \\
+\hline
+\end{tabular}
+\caption{Função valor obtida por iteração de política.}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+RD  & RD  & D   & *   & D   & DL   \\
+\hline
+RD  & RD  & D   & *   & D   & DL   \\
+\hline
+RD  & RD  & RD  & R   & D   & DL   \\
+\hline
+R   & RD  & D   & *   & D   & L    \\
+\hline
+*   & R   & R   & RD  & D   & *    \\
+\hline
+R   & U   & *   & R   & R   & SURD \\
+\hline
+\end{tabular}
+\caption{Política resultante da iteração de política.}
+\end{table}
+
+\newpage
+
+\subsection{Caso $p_c=0.8$ e $\gamma=0.98$}
+
+\subsubsection{Avaliação de Política}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+-47.19 & -47.11 & -47.01 & *     & -45.13 & -45.15 \\
+\hline
+-46.97 & -46.81 & -46.60 & *     & -44.58 & -44.65 \\
+\hline
+-46.58 & -46.21 & -45.62 & -44.79 & -43.40 & -43.63 \\
+\hline
+-46.20 & -45.41 & -44.42 & *     & -39.87 & -42.17 \\
+\hline
+*      & -44.31 & -41.64 & -35.28 & -32.96 & *     \\
+\hline
+-45.73 & -45.28 & *      & -29.68 & -21.88 & 0.00  \\
+\hline
+\end{tabular}
+\caption{Função valor obtida por avaliação de política.}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+SURDL & SURDL & SURDL & *     & SURDL & SURDL \\
+\hline
+SURDL & SURDL & SURDL & *     & SURDL & SURDL \\
+\hline
+SURDL & SURDL & SURDL & SURDL & SURDL & SURDL \\
+\hline
+SURDL & SURDL & SURDL & *     & SURDL & SURDL \\
+\hline
+*     & SURDL & SURDL & SURDL & SURDL & *     \\
+\hline
+SURDL & SURDL & *     & SURDL & SURDL & S     \\
+\hline
+\end{tabular}
+\caption{Política utilizada na avaliação de política.}
+\end{table}
+
+\newpage
+
+\subsubsection{Iteracão de Valor}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+-11.65 & -10.78 & -9.86 & *     & -7.79 & -8.53 \\
+\hline
+-10.72 & -9.78  & -8.78 & *     & -6.67 & -7.52 \\
+\hline
+-9.72  & -8.70  & -7.59 & -6.61 & -5.44 & -6.42 \\
+\hline
+-8.70  & -7.58  & -6.43 & *     & -4.09 & -5.30 \\
+\hline
+*      & -6.43  & -5.17 & -3.87 & -2.76 & *     \\
+\hline
+-8.63  & -7.58  & *     & -2.69 & -1.40 & 0.00  \\
+\hline
+\end{tabular}
+\caption{Função valor obtida por iteração de valor.}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+D   & D   & D   & *   & D   & D    \\
+\hline
+D   & D   & D   & *   & D   & D    \\
+\hline
+RD  & D   & D   & R   & D   & D    \\
+\hline
+R   & RD  & D   & *   & D   & L    \\
+\hline
+*   & R   & R   & D   & D   & *    \\
+\hline
+R   & U   & *   & R   & R   & S    \\
+\hline
+\end{tabular}
+\caption{Política derivada da iteração de valor.}
+\end{table}
+
+\newpage
+\subsubsection{Iteração de Política}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+-11.65 & -10.78 & -9.86 & *     & -7.79 & -8.53 \\
+\hline
+-10.72 & -9.78  & -8.78 & *     & -6.67 & -7.52 \\
+\hline
+-9.72  & -8.70  & -7.59 & -6.61 & -5.44 & -6.42 \\
+\hline
+-8.70  & -7.58  & -6.43 & *     & -4.09 & -5.30 \\
+\hline
+*      & -6.43  & -5.17 & -3.87 & -2.76 & *     \\
+\hline
+-8.63  & -7.58  & *     & -2.69 & -1.40 & 0.00  \\
+\hline
+\end{tabular}
+\caption{Função valor obtida por iteração de política.}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+D   & D   & D   & *   & D   & D    \\
+\hline
+D   & D   & D   & *   & D   & D    \\
+\hline
+R   & D   & D   & R   & D   & D    \\
+\hline
+R   & D   & D   & *   & D   & L    \\
+\hline
+*   & R   & R   & D   & D   & *    \\
+\hline
+R   & U   & *   & R   & R   & S    \\
+\hline
+\end{tabular}
+\caption{Política resultante da iteração de política.}
+\end{table}
+
+\section{Discussão dos Resultados}
+
+Foram realizados experimentos em dois cenários distintos: um ambiente determinístico com $p_c = 1.0$ e fator de desconto $\gamma = 1.0$, e um ambiente estocástico com $p_c = 0.8$ e $\gamma = 0.98$. A comparação entre os resultados obtidos permite observar o impacto da incerteza e da depreciação temporal na função de valor e nas políticas ótimas.
+
+Na \textbf{avaliação de política}, os valores do primeiro cenário atingem até $-380$, refletindo longos caminhos esperados sob uma política aleatória e sem desconto. Já no ambiente estocástico, os valores são mais suaves (por volta de $-45$), pois o desconto atenua o custo acumulado.
+
+Tanto na \textbf{iteração de valor} quanto na \textbf{iteração de política}, observou-se convergência para a mesma política ótima nos dois cenários, indicando robustez dos métodos mesmo sob incerteza. A diferença principal aparece na funçao de valor, que possui menos ruído no ambiente determinístico.
 
 \end{document}

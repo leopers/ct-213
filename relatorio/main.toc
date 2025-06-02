@@ -1,4 +1,17 @@
 \babel@toc {brazil}{}\relax 
 \contentsline {section}{\numberline {1}Breve Explicação em Alto Nível da Implementação}{3}{section.1}%
-\contentsline {section}{\numberline {2}Figuras Comprovando Funcionamento do Código}{6}{section.2}%
-\contentsline {section}{\numberline {3}Discussão}{6}{section.3}%
+\contentsline {subsection}{\numberline {1.1}Avaliação de Política}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Iteracão de Valor}{4}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Iteração de Política}{5}{subsection.1.3}%
+\contentsline {paragraph}{1. Avaliação de Política}{5}{paragraph*.1}%
+\contentsline {paragraph}{2. Melhoria de Política}{5}{paragraph*.2}%
+\contentsline {section}{\numberline {2}Tabelas Comprovando Funcionamento do Código}{6}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Caso $p_c=1.0$ e $\gamma =1.0$}{6}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Avaliação de Política}{6}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.2}Iteracão de Valor}{7}{subsubsection.2.1.2}%
+\contentsline {subsubsection}{\numberline {2.1.3}Iteração de Política}{8}{subsubsection.2.1.3}%
+\contentsline {subsection}{\numberline {2.2}Caso $p_c=0.8$ e $\gamma =0.98$}{9}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Avaliação de Política}{9}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Iteracão de Valor}{10}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Iteração de Política}{11}{subsubsection.2.2.3}%
+\contentsline {section}{\numberline {3}Discussão dos Resultados}{11}{section.3}%
