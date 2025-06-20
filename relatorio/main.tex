@@ -10,7 +10,6 @@
 \usepackage{setspace}
 \setstretch{1.5} % Espaçamento entre linhas
 
-% Fontes e formatação
 \usepackage{amsmath, bm} % Pacotes matemáticos
 \usepackage{graphicx} % Inclusão de imagens
 \usepackage{caption} % Estilização de legendas
@@ -21,6 +20,7 @@
 \usepackage{background} % Fundo para a página de título
 \usepackage{placeins} % Controle de posicionamento de floats (FloatBarrier)
 \usepackage{pdfpages}
+\usepackage{enumitem}
 % Ensure the package is loaded correctly for \floatbarrier
 
 \hypersetup{
@@ -47,7 +47,7 @@
     \textbf{Inteligência Artificial para Robótica Móvel CT-213}\\
     \Large Instituto Tecnológico de Aeronáutica 
 
-    \textbf{Relatório do Laboratório 10 - Programação Dinâmica}\\
+    \textbf{Relatório do Laboratório 11 -  Aprendizado por Reforço Livre de Modelo}\\
 }
 \author{
     Leonardo Peres Dias 
@@ -87,350 +87,177 @@
 \NoBgThispage % Desativa a marca d'água para as páginas seguintes
 
 \section{Breve Explicação em Alto Nível da Implementação}
+A implementação desenvolvida define uma classe base \texttt{RLAlgorithm}, e suas especializações \texttt{Sarsa} e \texttt{QLearning}.
 
-\subsection{Avaliação de Política}
+A tabela de ação-valor (\textit{Q-table}) é representada por uma matriz \texttt{q} de dimensão \texttt{(num\_states, num\_actions)}. Cada entrada \texttt{q[s, a]} corresponde à execução da ação $a$ no estado $s$ sob a política corrente.
 
-A avaliação de política tem como objetivo estimar a função de valor $V^\pi(s)$ para uma política fixa $\pi$, ou seja, o valor esperado do retorno acumulado ao seguir $\pi$ a partir de cada estado $s$. A equação de Bellman para avaliação de política é dada por:
+\subsection{SARSA}
 
-\begin{equation}
-V^\pi(s) = \sum_{a \in \mathcal{A}} \pi(a \mid s) \left[ R(s, a) + \gamma \sum_{s' \in \mathcal{S}} P(s' \mid s, a) V^\pi(s') \right],
-\end{equation}
+O algoritmo SARSA segue uma política \textit{on-policy}, ou seja, utiliza a mesma política $\varepsilon$-greedy tanto para seleção de ações quanto para atualização dos valores. A função \texttt{learn} atualiza a Q-table de acordo com a seguinte equação:
 
-onde:
-\begin{itemize}
-  \item $\pi(a \mid s)$ é a probabilidade de executar a ação $a$ no estado $s$ sob a política $\pi$;
-  \item $R(s, a)$ é a recompensa esperada ao executar a ação $a$ no estado $s$;
-  \item $P(s' \mid s, a)$ é a probabilidade de transição para o estado $s'$ ao executar a ação $a$ no estado $s$;
-  \item $\gamma$ é o fator de desconto $(0 \leq \gamma \leq 1)$.
-\end{itemize}
+\[
+Q(s, a) \leftarrow Q(s, a) + \alpha \left[ r + \gamma Q(s', a') - Q(s, a) \right]
+\]
 
-Na implementação, o algoritmo itera sobre todos os estados válidos do ambiente e atualiza seus valores de acordo com a equação acima. A política é representada como uma distribuição de probabilidade sobre as ações, e o valor de cada estado é atualizado com base na expectativa sobre as transições e as recompensas associadas.
+onde $a'$ é a próxima ação escolhida de acordo com a política $\varepsilon$-greedy.
 
-A atualização dos valores é feita de forma iterativa até que a variação máxima entre as iterações seja menor que uma tolerância $\varepsilon$, garantindo a convergência para $V^\pi$.
+\subsection{Q-Learning}
 
+Já o Q-Learning é um algoritmo \textit{off-policy}, ou seja, aprende assumindo que sempre será tomada a melhor ação futura, mesmo que a execução atual use uma política $\varepsilon$-greedy. A atualização da Q-table segue a equação:
+
+\[
+Q(s, a) \leftarrow Q(s, a) + \alpha \left[ r + \gamma \max_{a'} Q(s', a') - Q(s, a) \right]
+\]
+
+Ambos os algoritmos utilizam funções auxiliares para seleção de ações (\texttt{epsilon\_greedy\_action}, \texttt{greedy\_action}) e para gerar a política determinística greedy em forma tabular a partir da Q-table final (\texttt{compute\_greedy\_policy\_as\_table}).
+
+\newpage
+\section{Figuras Comprovando Funcionamento do Código}
+
+\subsection{SARSA}
+\begin{enumerate}[label=2.1.\arabic*.]
+    \item \textbf{Tabela Ação-Valor e Política \textit{Greedy} Aprendida no Teste com MDP Simples}\\
+    
+    \begin{table}[h!]
+    \centering
+    \caption{Tabela Ação-Valor Q(s,a) aprendida pelo SARSA}
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    \textbf{Estado $s$} & \textbf{Q(s, Ação = L)} & \textbf{Q(s, Ação = S)} & \textbf{Q(s, Ação = R)} \\
+    \hline
+    0 & -9.33 & -8.60 & -10.58 \\
+    1 & -10.47 & -9.64 & -11.55 \\
+    2 & -11.21 & -10.50 & -11.66 \\
+    3 & -11.82 & -11.56 & -12.08 \\
+    4 & -12.38 & -12.32 & -12.31 \\
+    5 & -11.88 & -11.94 & -11.44 \\
+    6 & -10.89 & -11.59 & -10.48 \\
+    7 & -10.58 & -11.47 & -9.42 \\
+    8 & -9.46 & -10.33 & -8.65 \\
+    9 & -7.64 & -8.71 & -8.57 \\
+    \hline
+    \end{tabular}
+    \end{table}
+
+    \vspace{0.3cm}
+
+    \noindent\textbf{Política Greedy Aprendida:}
+
+
+    \[
+    \pi = [\text{L}, \text{L}, \text{L}, \text{L}, \text{R}, \text{R}, \text{R}, \text{R}, \text{R}, \text{S}]
+    \]
+    
+    \item \textbf{Convergência do Retorno}\\
+    
+    \begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{sarsa/return_convergence.png}
+    \caption{Convergência do Retorno no SARSA}
+    \label{fig:sarsa_return_convergence}
+    \end{figure}
+    
+    \item \textbf{Tabela Q e Política Determinística que Seria Obtida Através de \textit{Greedy}(Q)}\\
+    \begin{figure}[h!]
+      \centering
+      \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{sarsa/action_value_table.png}
+        \caption{Tabela Q aprendida pelo SARSA}
+        \label{fig:sarsa_q_table}
+      \end{minipage}\hfill
+      \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{sarsa/greedy_policy_table.png}
+        \caption{Política determinística Greedy obtida}
+        \label{fig:sarsa_greedy_policy}
+      \end{minipage}
+    \end{figure}
+    
+    \item \textbf{Melhor Trajetória Obtida Durante o Aprendizado}\\
+    \begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{sarsa/line_follower_solution.jpeg}
+    \caption{Melhor Trajetória Obtida pelo SARSA}
+    \label{fig:sarsa_best_trajectory}
+    \end{figure}
+\end{enumerate}
+
+\newpage
+\subsection{Q-Learning}
+\begin{enumerate}[label=2.2.\arabic*.]
+    \item \textbf{Tabela Ação-Valor e Política \textit{Greedy} Aprendida no Teste com MDP Simples}\\
+    
+    \begin{table}[h!]
+    \centering
+    \caption{Tabela Ação-Valor Q(s,a) aprendida pelo Q-Learning}
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    \textbf{Estado $s$} & \textbf{Q(s, Ação = L)} & \textbf{Q(s, Ação = S)} & \textbf{Q(s, Ação = R)} \\
+    \hline
+    0 & -1.99 & -1.00 & -2.97 \\
+    1 & -2.97 & -1.99 & -3.94 \\
+    2 & -3.45 & -2.97 & -4.55 \\
+    3 & -4.14 & -3.94 & -4.49 \\
+    4 & -5.19 & -4.89 & -4.89 \\
+    5 & -4.25 & -4.60 & -3.94 \\
+    6 & -3.75 & -4.11 & -2.97 \\
+    7 & -2.97 & -3.91 & -1.99 \\
+    8 & -1.99 & -2.97 & -1.00 \\
+    9 &  0.00 & -0.99 & -0.99 \\
+    \hline
+    \end{tabular}
+    \end{table}
+
+    \vspace{0.3cm}
+
+    \noindent\textbf{Política Greedy Aprendida:}
+
+    \[
+    \pi = [\text{L}, \text{L}, \text{L}, \text{L}, \text{L}, \text{R}, \text{R}, \text{R}, \text{R}, \text{S}]
+    \]
+    
+    \item \textbf{Convergência do Retorno}\\
+    \begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{q-learning/return_convergence.png}
+    \caption{Convergência do Retorno no Q-Learning}
+
+    \end{figure}
+
+    \newpage
+    
+    \item \textbf{Tabela Q e Política Determinística que Seria Obtida Através de \textit{Greedy}(Q)}\\
+    \begin{figure}[h!]
+      \centering
+      \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{q-learning/action_value_table.png}
+        \caption{Tabela Q aprendida pelo Q-Learning}
+
+      \end{minipage}\hfill
+      \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{q-learning/greedy_policy_table.png}
+        \caption{Política determinística Greedy obtida}
+
+      \end{minipage}
+    \end{figure}
+    
+    \item \textbf{Melhor Trajetória Obtida Durante o Aprendizado}\\
+    \begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{q-learning/line_follower_solution.jpeg}
+    \caption{Melhor Trajetória Obtida pelo Q-Learning}
+    \end{figure}
+\end{enumerate}
 
 
 \newpage
-
-\subsection{Iteracão de Valor}
-
-
-O método de \textit{iteração de valor} busca encontrar a política ótima $\pi^*$ iterando sobre a equação de Bellman de otimalidade até a convergência para a função de valor ótima $V^*(s)$. A equação de Bellman de otimalidade é dada por:
-
-\begin{equation}
-V^*(s) = \max_{a \in \mathcal{A}} \left[ R(s, a) + \gamma \sum_{s' \in \mathcal{S}} P(s' \mid s, a) V^*(s') \right],
-\end{equation}
-
-onde:
-\begin{itemize}
-  \item $V^*(s)$ é o valor ótimo do estado $s$;
-  \item $R(s, a)$ é a recompensa esperada ao executar a ação $a$ no estado $s$;
-  \item $P(s' \mid s, a)$ é a probabilidade de transição para o estado $s'$ dado o par $(s, a)$;
-  \item $\gamma$ é o fator de desconto.
-\end{itemize}
-
-O algoritmo começa com uma estimativa inicial arbitrária para $V(s)$ (por exemplo, $V(s) = 0$) e atualiza os valores iterativamente conforme a equação acima. A cada iteração, calcula-se o valor de cada estado assumindo que se tomará sempre a melhor ação a partir daquele ponto.
-
-A iteração é interrompida quando a variação máxima entre os valores antigos e os novos for menor que uma tolerância $\varepsilon$, indicando convergência numérica para $V^*$. Após a convergência, uma política ótima $\pi^*$ pode ser obtida extraindo a ação que maximiza a equação de Bellman para cada estado:
-
-\begin{equation}
-\pi^*(s) = \arg\max_{a \in \mathcal{A}} \left[ R(s, a) + \gamma \sum_{s'} P(s' \mid s, a) V^*(s') \right].
-\end{equation}
-
-\newpage
-
-\subsection{Iteração de Política}
-
-
-A \textit{iteração de política} é um método iterativo que alterna entre: a \textbf{avaliação de política} e a \textbf{melhoria de política por busca gulosa}. O objetivo é encontrar a política ótima $\pi^*$ para um problema de decisão de Markov (MDP).
-
-\paragraph{1. Avaliação de Política} Dada uma política fixa $\pi$, estima-se a função de valor $V^\pi(s)$ resolvendo iterativamente a equação de Bellman para avaliação de política:
-
-\begin{equation}
-V^\pi(s) = \sum_{a \in \mathcal{A}} \pi(a \mid s) \left[ R(s, a) + \gamma \sum_{s'} P(s' \mid s, a) V^\pi(s') \right].
-\end{equation}
-
-\paragraph{2. Melhoria de Política} A partir da função de valor $V^\pi(s)$ obtida, a política é atualizada para uma nova política $\pi'$ escolhendo, para cada estado, as ações que maximizam o valor esperado do retorno. Essa etapa utiliza a equação de Bellman de otimalidade:
-
-\begin{equation}
-\pi'(s) = \arg\max_{a \in \mathcal{A}} \left[ R(s, a) + \gamma \sum_{s'} P(s' \mid s, a) V^\pi(s') \right].
-\end{equation}
-
-\newpage
-
-\section{Tabelas Comprovando Funcionamento do Código}
-
-\subsection{Caso $p_c=1.0$ e $\gamma=1.0$}
-
-\subsubsection{Avaliação de Política}
-
-\begin{table}[htbp]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|}
-\hline
--384.09 & -382.73 & -381.19 & *       & -339.93 & -339.93 \\
-\hline
--380.45 & -377.91 & -374.65 & *       & -334.92 & -334.93 \\
-\hline
--374.34 & -368.82 & -359.85 & -344.88 & -324.92 & -324.93 \\
-\hline
--368.76 & -358.18 & -346.03 & *       & -289.95 & -309.94 \\
-\hline
-*       & -344.12 & -315.05 & -250.02 & -229.99 & *       \\
-\hline
--359.12 & -354.12 & *       & -200.01 & -145.00 & 0.00    \\
-\hline
-\end{tabular}
-\caption{Função valor obtida por avaliação de política.}
-\end{table}
-
-\begin{table}[htbp]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|}
-\hline
-SURDL & SURDL & SURDL & *     & SURDL & SURDL \\
-\hline
-SURDL & SURDL & SURDL & *     & SURDL & SURDL \\
-\hline
-SURDL & SURDL & SURDL & SURDL & SURDL & SURDL \\
-\hline
-SURDL & SURDL & SURDL & *     & SURDL & SURDL \\
-\hline
-*     & SURDL & SURDL & SURDL & SURDL & *     \\
-\hline
-SURDL & SURDL & *     & SURDL & SURDL & S     \\
-\hline
-\end{tabular}
-\caption{Política utilizada na avaliação de política.}
-\end{table}
-
-\newpage
-
-\subsubsection{Iteracão de Valor}
-
-\begin{table}[htbp]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|}
-\hline
--10.00 & -9.00 & -8.00 & *     & -6.00 & -7.00 \\
-\hline
--9.00  & -8.00 & -7.00 & *     & -5.00 & -6.00 \\
-\hline
--8.00  & -7.00 & -6.00 & -5.00 & -4.00 & -5.00 \\
-\hline
--7.00  & -6.00 & -5.00 & *     & -3.00 & -4.00 \\
-\hline
-*      & -5.00 & -4.00 & -3.00 & -2.00 & *     \\
-\hline
--7.00  & -6.00 & *     & -2.00 & -1.00 & 0.00  \\
-\hline
-\end{tabular}
-\caption{Função valor obtida por iteração de valor.}
-\end{table}
-
-\begin{table}[htbp]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|}
-\hline
-RD  & RD  & D   & *   & D   & DL   \\
-\hline
-RD  & RD  & D   & *   & D   & DL   \\
-\hline
-RD  & RD  & RD  & R   & D   & DL   \\
-\hline
-R   & RD  & D   & *   & D   & L    \\
-\hline
-*   & R   & R   & RD  & D   & *    \\
-\hline
-R   & U   & *   & R   & R   & SURD \\
-\hline
-\end{tabular}
-\caption{Política derivada da iteração de valor.}
-\end{table}
-
-\newpage
-
-\subsubsection{Iteração de Política}
-
-\begin{table}[htbp]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|}
-\hline
--10.00 & -9.00 & -8.00 & *     & -6.00 & -7.00 \\
-\hline
--9.00  & -8.00 & -7.00 & *     & -5.00 & -6.00 \\
-\hline
--8.00  & -7.00 & -6.00 & -5.00 & -4.00 & -5.00 \\
-\hline
--7.00  & -6.00 & -5.00 & *     & -3.00 & -4.00 \\
-\hline
-*      & -5.00 & -4.00 & -3.00 & -2.00 & *     \\
-\hline
--7.00  & -6.00 & *     & -2.00 & -1.00 & 0.00  \\
-\hline
-\end{tabular}
-\caption{Função valor obtida por iteração de política.}
-\end{table}
-
-\begin{table}[htbp]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|}
-\hline
-RD  & RD  & D   & *   & D   & DL   \\
-\hline
-RD  & RD  & D   & *   & D   & DL   \\
-\hline
-RD  & RD  & RD  & R   & D   & DL   \\
-\hline
-R   & RD  & D   & *   & D   & L    \\
-\hline
-*   & R   & R   & RD  & D   & *    \\
-\hline
-R   & U   & *   & R   & R   & SURD \\
-\hline
-\end{tabular}
-\caption{Política resultante da iteração de política.}
-\end{table}
-
-\newpage
-
-\subsection{Caso $p_c=0.8$ e $\gamma=0.98$}
-
-\subsubsection{Avaliação de Política}
-
-\begin{table}[htbp]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|}
-\hline
--47.19 & -47.11 & -47.01 & *     & -45.13 & -45.15 \\
-\hline
--46.97 & -46.81 & -46.60 & *     & -44.58 & -44.65 \\
-\hline
--46.58 & -46.21 & -45.62 & -44.79 & -43.40 & -43.63 \\
-\hline
--46.20 & -45.41 & -44.42 & *     & -39.87 & -42.17 \\
-\hline
-*      & -44.31 & -41.64 & -35.28 & -32.96 & *     \\
-\hline
--45.73 & -45.28 & *      & -29.68 & -21.88 & 0.00  \\
-\hline
-\end{tabular}
-\caption{Função valor obtida por avaliação de política.}
-\end{table}
-
-\begin{table}[htbp]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|}
-\hline
-SURDL & SURDL & SURDL & *     & SURDL & SURDL \\
-\hline
-SURDL & SURDL & SURDL & *     & SURDL & SURDL \\
-\hline
-SURDL & SURDL & SURDL & SURDL & SURDL & SURDL \\
-\hline
-SURDL & SURDL & SURDL & *     & SURDL & SURDL \\
-\hline
-*     & SURDL & SURDL & SURDL & SURDL & *     \\
-\hline
-SURDL & SURDL & *     & SURDL & SURDL & S     \\
-\hline
-\end{tabular}
-\caption{Política utilizada na avaliação de política.}
-\end{table}
-
-\newpage
-
-\subsubsection{Iteracão de Valor}
-
-\begin{table}[htbp]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|}
-\hline
--11.65 & -10.78 & -9.86 & *     & -7.79 & -8.53 \\
-\hline
--10.72 & -9.78  & -8.78 & *     & -6.67 & -7.52 \\
-\hline
--9.72  & -8.70  & -7.59 & -6.61 & -5.44 & -6.42 \\
-\hline
--8.70  & -7.58  & -6.43 & *     & -4.09 & -5.30 \\
-\hline
-*      & -6.43  & -5.17 & -3.87 & -2.76 & *     \\
-\hline
--8.63  & -7.58  & *     & -2.69 & -1.40 & 0.00  \\
-\hline
-\end{tabular}
-\caption{Função valor obtida por iteração de valor.}
-\end{table}
-
-\begin{table}[htbp]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|}
-\hline
-D   & D   & D   & *   & D   & D    \\
-\hline
-D   & D   & D   & *   & D   & D    \\
-\hline
-RD  & D   & D   & R   & D   & D    \\
-\hline
-R   & RD  & D   & *   & D   & L    \\
-\hline
-*   & R   & R   & D   & D   & *    \\
-\hline
-R   & U   & *   & R   & R   & S    \\
-\hline
-\end{tabular}
-\caption{Política derivada da iteração de valor.}
-\end{table}
-
-\newpage
-\subsubsection{Iteração de Política}
-
-\begin{table}[htbp]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|}
-\hline
--11.65 & -10.78 & -9.86 & *     & -7.79 & -8.53 \\
-\hline
--10.72 & -9.78  & -8.78 & *     & -6.67 & -7.52 \\
-\hline
--9.72  & -8.70  & -7.59 & -6.61 & -5.44 & -6.42 \\
-\hline
--8.70  & -7.58  & -6.43 & *     & -4.09 & -5.30 \\
-\hline
-*      & -6.43  & -5.17 & -3.87 & -2.76 & *     \\
-\hline
--8.63  & -7.58  & *     & -2.69 & -1.40 & 0.00  \\
-\hline
-\end{tabular}
-\caption{Função valor obtida por iteração de política.}
-\end{table}
-
-\begin{table}[htbp]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|}
-\hline
-D   & D   & D   & *   & D   & D    \\
-\hline
-D   & D   & D   & *   & D   & D    \\
-\hline
-R   & D   & D   & R   & D   & D    \\
-\hline
-R   & D   & D   & *   & D   & L    \\
-\hline
-*   & R   & R   & D   & D   & *    \\
-\hline
-R   & U   & *   & R   & R   & S    \\
-\hline
-\end{tabular}
-\caption{Política resultante da iteração de política.}
-\end{table}
-
 \section{Discussão dos Resultados}
 
-Foram realizados experimentos em dois cenários distintos: um ambiente determinístico com $p_c = 1.0$ e fator de desconto $\gamma = 1.0$, e um ambiente estocástico com $p_c = 0.8$ e $\gamma = 0.98$. A comparação entre os resultados obtidos permite observar o impacto da incerteza e da depreciação temporal na função de valor e nas políticas ótimas.
+No experimento com o MDP simplificado — um labirinto unidimensional — tanto o algoritmo SARSA quanto o Q-Learning convergiram para políticas \textit{greedy} que resolvem a tarefa de forma ótima. Ambas as políticas levam o agente da posição inicial até o objetivo com o menor número possível de passos. No entanto, apesar de serem ótimas, as políticas aprendidas diferem: por exemplo, no estado central do labirinto, a ação ótima aprendida pelo SARSA foi virar à direita, enquanto o Q-Learning optou por virar à esquerda — ambas válidas devido à simetria do ambiente. Essa diferença reflete o caráter \textit{on-policy} do SARSA, que tende a aprender com base no comportamento atual, e o aspecto \textit{off-policy} do Q-Learning, que favorece estimativas mais agressivas das melhores ações. Além disso, os valores nas tabelas de ação-valor mostram que o Q-Learning atribui valores mais altos (menos negativos), indicando uma política mais otimista em relação ao retorno esperado.
 
-Na \textbf{avaliação de política}, os valores do primeiro cenário atingem até $-380$, refletindo longos caminhos esperados sob uma política aleatória e sem desconto. Já no ambiente estocástico, os valores são mais suaves (por volta de $-45$), pois o desconto atenua o custo acumulado.
-
-Tanto na \textbf{iteração de valor} quanto na \textbf{iteração de política}, observou-se convergência para a mesma política ótima nos dois cenários, indicando robustez dos métodos mesmo sob incerteza. A diferença principal aparece na funçao de valor, que possui menos ruído no ambiente determinístico.
-
+Nos testes realizados com o robô seguidor de linha, observamos que ambos os algoritmos — SARSA e Q-Learning — foram capazes de aprender trajetórias que completam o percurso de forma eficaz. Contudo, a convergência do retorno apresentou comportamentos distintos: o SARSA exibiu maior instabilidade ao longo das iterações, com episódios de retorno significativamente negativos, especialmente nas fases iniciais do aprendizado. Isso reflete seu caráter \textit{on-policy}, que o torna mais sensível à política exploratória. Por outro lado, o Q-Learning convergiu de forma mais estável e rápida, beneficiando-se de seu viés \textit{off-policy} e natureza mais otimista. As tabelas de ação-valor ilustram essa diferença, com valores mais consistentes e homogêneos para o Q-Learning. No geral, apesar de trajetórias semelhantes terem sido obtidas ao final do treinamento, o Q-Learning demonstrou maior robustez e confiabilidade durante o processo de aprendizado.
+% (Escreva aqui uma análise crítica comparando os resultados de SARSA e Q-Learning)
 \end{document}
