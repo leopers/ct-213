@@ -1,8 +1,8 @@
 \babel@toc {brazil}{}\relax 
 \contentsline {section}{\numberline {1}Breve Explicação em Alto Nível da Implementação}{3}{section.1}%
-\contentsline {subsection}{\numberline {1.1}SARSA}{3}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Q-Learning}{3}{subsection.1.2}%
-\contentsline {section}{\numberline {2}Figuras Comprovando Funcionamento do Código}{4}{section.2}%
-\contentsline {subsection}{\numberline {2.1}SARSA}{4}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Q-Learning}{6}{subsection.2.2}%
-\contentsline {section}{\numberline {3}Discussão dos Resultados}{8}{section.3}%
+\contentsline {section}{\numberline {2}Figuras Comprovando Funcionamento do Código}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Sumário do Modelo}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Retorno ao Longo dos Episódios de Treinamento}{4}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Política Aprendida pelo DQN}{4}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Retorno de 30 Episódios Usando a Rede Neural Treinada}{5}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Discussão dos Resultados}{5}{section.3}%

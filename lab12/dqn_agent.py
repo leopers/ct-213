@@ -8,7 +8,18 @@ class DQNAgent:
     """
     Represents a Deep Q-Networks (DQN) agent.
     """
-    def __init__(self, state_size, action_size, gamma=0.95, epsilon=0.5, epsilon_min=0.01, epsilon_decay=0.98, learning_rate=0.001, buffer_size=4098):
+
+    def __init__(
+        self,
+        state_size,
+        action_size,
+        gamma=0.95,
+        epsilon=0.5,
+        epsilon_min=0.01,
+        epsilon_decay=0.98,
+        learning_rate=0.001,
+        buffer_size=4098,
+    ):
         """
         Creates a Deep Q-Networks (DQN) agent.
 
@@ -31,7 +42,9 @@ class DQNAgent:
         """
         self.state_size = state_size
         self.action_size = action_size
-        self.replay_buffer = deque(maxlen=buffer_size)  # giving a maximum length makes this buffer forget old memories
+        self.replay_buffer = deque(
+            maxlen=buffer_size
+        )  # giving a maximum length makes this buffer forget old memories
         self.gamma = gamma
         self.epsilon = epsilon
         self.epsilon_min = epsilon_min
@@ -46,14 +59,17 @@ class DQNAgent:
         :return: action-value neural network.
         :rtype: Keras' model.
         """
-        raise NotImplementedError('You need to implement the neural network model.')  # Remove this line
-        # Todo: Uncomment the lines below
-        # model = models.Sequential()
-        # Todo: implement Keras' model
-        # model.compile(loss=losses.mse,
-        #               optimizer=optimizers.legacy.Adam(lr=self.learning_rate))
-        # model.summary()
-        # return model
+        model = models.Sequential()
+        model.add(
+            layers.Dense(24, input_dim=self.state_size, activation=activations.relu)
+        )
+        model.add(layers.Dense(24, activation=activations.relu))
+        model.add(layers.Dense(self.action_size, activation=activations.linear))
+        model.compile(
+            loss=losses.mse, optimizer=optimizers.legacy.Adam(lr=self.learning_rate)
+        )
+        model.summary()
+        return model
 
     def act(self, state):
         """
@@ -64,8 +80,10 @@ class DQNAgent:
         :return: chosen action.
         :rtype: int.
         """
-        # Todo: implement epsilon-greey action selection.
-        return 1  # Todo: change this line
+        if np.random.rand() <= self.epsilon:
+            return random.randrange(self.action_size)
+        actions = self.model.predict(state)
+        return np.argmax(actions[0])
 
     def append_experience(self, state, action, reward, next_state, done):
         """
@@ -98,15 +116,19 @@ class DQNAgent:
         for state, action, reward, next_state, done in minibatch:
             target = self.model.predict(state)
             if not done:
-                target[0][action] = reward + self.gamma * np.max(self.model.predict(next_state)[0])
+                target[0][action] = reward + self.gamma * np.max(
+                    self.model.predict(next_state)[0]
+                )
             else:
                 target[0][action] = reward
             # Filtering out states and targets for training
             states.append(state[0])
             targets.append(target[0])
-        history = self.model.fit(np.array(states), np.array(targets), epochs=1, verbose=0)
+        history = self.model.fit(
+            np.array(states), np.array(targets), epochs=1, verbose=0
+        )
         # Keeping track of loss
-        loss = history.history['loss'][0]
+        loss = history.history["loss"][0]
         return loss
 
     def load(self, name):

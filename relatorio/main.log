@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.18.0 (TeX Live 2024)  (format=lualatex 2024.12.7)  20 JUN 2025 20:53
+This is LuaHBTeX, Version 1.18.0 (TeX Live 2024)  (format=lualatex 2024.12.7)  21 JUN 2025 02:03
  restricted system commands enabled.
  file:line:error style messages enabled.
 **/Users/leonardodias/ct-213/relatorio/main
@@ -827,23 +827,20 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-14.05388pt}.
 
 [2]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 90.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 91.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-Overfull \hbox (3.40338pt too wide) in paragraph at lines 92--93
-[]\T1/lmr/m/n/12 A ta-bela de ação-valor (\T1/lmr/m/it/12 Q-table\T1/lmr/m/n/12 ) é re-pre-sen-tada por uma ma-triz \T1/lmtt/m/n/12 q \T1/lmr/m/n/12 de di-men-são \T1/lmtt/m/n/12 (num_states,
- []
-
-
-Overfull \hbox (24.95297pt too wide) in paragraph at lines 112--113
-[]\T1/lmr/m/n/12 Am-bos os al-go-rit-mos uti-li-zam fun-ções au-xi-li-a-res para se-le-ção de ações (\T1/lmtt/m/n/12 epsilon_greedy_action\T1/lmr/m/n/12 ,
- []
-
+<dqn_training.png, id=57, 462.528pt x 346.896pt>
+File: dqn_training.png Graphic file (type png)
+<use dqn_training.png>
+Package luatex.def Info: dqn_training.png  used on input line 122.
+(luatex.def)             Requested size: 289.1282pt x 216.8571pt.
 File: ITA.png Graphic file (type png)
 <use ITA.png>
-Package luatex.def Info: ITA.png  used on input line 114.
+Package luatex.def Info: ITA.png  used on input line 123.
 (luatex.def)             Requested size: 56.9055pt x 21.70384pt.
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 26.05388pt, for example:
@@ -852,73 +849,16 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-14.05388pt}.
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 119--120
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 151--152
-
- []
-
-<sarsa/return_convergence.png, id=70, 462.528pt x 346.896pt>
-File: sarsa/return_convergence.png Graphic file (type png)
-<use sarsa/return_convergence.png>
-Package luatex.def Info: sarsa/return_convergence.png  used on input line 155.
-(luatex.def)             Requested size: 289.1282pt x 216.8571pt.
-<sarsa/action_value_table.png, id=71, 462.528pt x 346.896pt>
-File: sarsa/action_value_table.png Graphic file (type png)
-<use sarsa/action_value_table.png>
-Package luatex.def Info: sarsa/action_value_table.png  used on input line 165.
-(luatex.def)             Requested size: 240.93773pt x 180.70454pt.
-<sarsa/greedy_policy_table.png, id=72, 462.528pt x 346.896pt>
-File: sarsa/greedy_policy_table.png Graphic file (type png)
-<use sarsa/greedy_policy_table.png>
-Package luatex.def Info: sarsa/greedy_policy_table.png  used on input line 171.
-(luatex.def)             Requested size: 240.93773pt x 180.70454pt.
-File: ITA.png Graphic file (type png)
-<use ITA.png>
-Package luatex.def Info: ITA.png  used on input line 176.
-(luatex.def)             Requested size: 56.9055pt x 21.70384pt.
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 26.05388pt, for example:
-(fancyhdr)                \setlength{\headheight}{26.05388pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-14.05388pt}.
-
-[4<./sarsa/return_convergence.png>]
-<sarsa/line_follower_solution.jpeg, id=83, 803.0pt x 602.25pt>
-File: sarsa/line_follower_solution.jpeg Graphic file (type jpg)
-<use sarsa/line_follower_solution.jpeg>
-Package luatex.def Info: sarsa/line_follower_solution.jpeg  used on input line 180.
-(luatex.def)             Requested size: 289.1282pt x 216.84659pt.
-File: ITA.png Graphic file (type png)
-<use ITA.png>
-Package luatex.def Info: ITA.png  used on input line 186.
-(luatex.def)             Requested size: 56.9055pt x 21.70384pt.
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 26.05388pt, for example:
-(fancyhdr)                \setlength{\headheight}{26.05388pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-14.05388pt}.
-
-[5<./sarsa/action_value_table.png><./sarsa/greedy_policy_table.png><./sarsa/line_follower_solution.jpeg>]
-Underfull \hbox (badness 10000) in paragraph at lines 189--190
-
- []
-
-<q-learning/return_convergence.png, id=94, 462.528pt x 346.896pt>
-File: q-learning/return_convergence.png Graphic file (type png)
-<use q-learning/return_convergence.png>
-Package luatex.def Info: q-learning/return_convergence.png  used on input line 223.
+<agent_decision.png, id=65, 462.528pt x 346.896pt>
+File: agent_decision.png Graphic file (type png)
+<use agent_decision.png>
+Package luatex.def Info: agent_decision.png  used on input line 129.
 (luatex.def)             Requested size: 289.1282pt x 216.8571pt.
 File: ITA.png Graphic file (type png)
 <use ITA.png>
-Package luatex.def Info: ITA.png  used on input line 228.
+Package luatex.def Info: ITA.png  used on input line 132.
 (luatex.def)             Requested size: 56.9055pt x 21.70384pt.
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 26.05388pt, for example:
@@ -926,25 +866,15 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-14.05388pt}.
 
-[6<./q-learning/return_convergence.png>]
-<q-learning/action_value_table.png, id=104, 462.528pt x 346.896pt>
-File: q-learning/action_value_table.png Graphic file (type png)
-<use q-learning/action_value_table.png>
-Package luatex.def Info: q-learning/action_value_table.png  used on input line 235.
-(luatex.def)             Requested size: 240.93773pt x 180.70454pt.
-<q-learning/greedy_policy_table.png, id=105, 462.528pt x 346.896pt>
-File: q-learning/greedy_policy_table.png Graphic file (type png)
-<use q-learning/greedy_policy_table.png>
-Package luatex.def Info: q-learning/greedy_policy_table.png  used on input line 241.
-(luatex.def)             Requested size: 240.93773pt x 180.70454pt.
-<q-learning/line_follower_solution.jpeg, id=106, 803.0pt x 602.25pt>
-File: q-learning/line_follower_solution.jpeg Graphic file (type jpg)
-<use q-learning/line_follower_solution.jpeg>
-Package luatex.def Info: q-learning/line_follower_solution.jpeg  used on input line 250.
-(luatex.def)             Requested size: 289.1282pt x 216.84659pt.
+[4<./dqn_training.png><./agent_decision.png>]
+<dqn_evaluation.png, id=74, 462.528pt x 346.896pt>
+File: dqn_evaluation.png Graphic file (type png)
+<use dqn_evaluation.png>
+Package luatex.def Info: dqn_evaluation.png  used on input line 138.
+(luatex.def)             Requested size: 289.1282pt x 216.8571pt.
 File: ITA.png Graphic file (type png)
 <use ITA.png>
-Package luatex.def Info: ITA.png  used on input line 256.
+Package luatex.def Info: ITA.png  used on input line 148.
 (luatex.def)             Requested size: 56.9055pt x 21.70384pt.
 
 
@@ -954,48 +884,29 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-14.05388pt}.
 
-[7<./q-learning/action_value_table.png><./q-learning/greedy_policy_table.png><./q-learning/line_follower_solution.jpeg>]
-File: ITA.png Graphic file (type png)
-<use ITA.png>
-Package luatex.def Info: ITA.png  used on input line 263.
-(luatex.def)             Requested size: 56.9055pt x 21.70384pt.
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 26.05388pt, for example:
-(fancyhdr)                \setlength{\headheight}{26.05388pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-14.05388pt}.
-
-[8
-Missing character: There is no — (U+2014) in font ec-lmr12!
-Missing character: There is no — (U+2014) in font ec-lmr12!
-Missing character: There is no — (U+2014) in font ec-lmr12!
-Missing character: There is no — (U+2014) in font ec-lmr12!
-Missing character: There is no — (U+2014) in font ec-lmr12!
-] (./main.aux)
+[5<./dqn_evaluation.png>] (./main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 444B66AA57FA2CEE8A28F7702A525723;1134.
+(rerunfilecheck)             Checksum: 67CFCC19B99698F57B32C74EC2A683B7;1763.
 )
 
 Here is how much of LuaTeX's memory you used:
- 25726 strings out of 476447
+ 25632 strings out of 476447
  125027,1977958 words of node,token memory allocated
- 616 words of node memory still in use:
-   8 hlist, 2 vlist, 2 rule, 5 glue, 4 kern, 1 glyph, 24 attribute, 59 glue_spec, 14 attribute_list, 3 write nodes
-   avail lists: 2:1154,3:229,4:60,5:254,6:44,7:4698,8:63,9:600,10:17,11:544
- 47091 multiletter control sequences out of 65536+600000
- 70 fonts using 4406607 bytes
- 99i,15n,97p,1076b,799s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on main.pdf (8 pages, 607139 bytes).
+ 592 words of node memory still in use:
+   8 hlist, 2 vlist, 2 rule, 5 glue, 4 kern, 1 glyph, 16 attribute, 59 glue_spec, 10 attribute_list, 3 write nodes
+   avail lists: 2:699,3:476,4:61,5:203,6:56,7:3979,8:6,9:299,10:9,11:378
+ 47037 multiletter control sequences out of 65536+600000
+ 67 fonts using 4158567 bytes
+ 99i,15n,97p,551b,799s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
+Output written on main.pdf (5 pages, 501790 bytes).
 
-PDF statistics: 167 PDF objects out of 1000 (max. 8388607)
- 126 compressed objects within 2 object streams
- 32 named destinations out of 1000 (max. 131072)
+PDF statistics: 113 PDF objects out of 1000 (max. 8388607)
+ 89 compressed objects within 1 object stream
+ 16 named destinations out of 1000 (max. 131072)
  72 words of extra memory for PDF output out of 10000 (max. 100000000)
 

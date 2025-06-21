@@ -18,7 +18,7 @@ def reward_engineering_mountain_car(state, action, reward, next_state, done):
     :return: modified reward for faster training.
     :rtype: float.
     """
-    # Todo: implement reward engineering
-    return reward
-
-
+    r_new = reward + (state[0] - START_POSITION_CAR) ** 2 + state[1] ** 2
+    if next_state[0] >= 0.5:
+        r_new += 50
+    return r_new
